@@ -1,11 +1,10 @@
 import React from "react";
+import "./style.css"
 
 const Header = () => {
-  return <div>
-    <div>
-      <h1>YTS</h1>
-    </div>
-    <div>
+  return <div className="header"> 
+
+    
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
@@ -15,7 +14,6 @@ const Header = () => {
           <li><a href="/">Browse Movies</a></li>
         </ul>
       </nav>
-    </div>
 
 
   </div>;
