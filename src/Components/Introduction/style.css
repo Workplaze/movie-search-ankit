@@ -1,0 +1,18 @@
+.introduction {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: fit-content;
+
+    padding: 80px;
+}
+
+@media screen and (max-width: 500px) {
+    .introduction {
+    width: fit-content;
+    margin: auto;
+    padding: 10px;
+
+    }
+  }

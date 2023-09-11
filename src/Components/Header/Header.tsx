@@ -5,7 +5,12 @@ const Header = () => {
   return <div className="header"> 
 
     
-      <nav>
+      <div className="nav">
+
+        <div>
+          <h1>Yts</h1>
+        </div>
+        <div>
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/">3D</a></li>
@@ -13,7 +18,8 @@ const Header = () => {
           <li><a href="/">Trending</a></li>
           <li><a href="/">Browse Movies</a></li>
         </ul>
-      </nav>
+        </div>
+      </div>
 
 
   </div>;
