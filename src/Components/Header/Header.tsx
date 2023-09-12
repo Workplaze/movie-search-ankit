@@ -1,9 +1,10 @@
 import React from "react";
 import "./style.css";
 import { useTheme } from "../ContextApi/ThemeContext";
+import ThemeToggleButton from "../ThemeToggleButton";
 
 const Header = () => {
-  const {isDarkMode,toggleTheme} =useTheme();
+  const { isDarkMode, toggleTheme } = useTheme();
   return (
     <div className="header">
       <div className="nav">
@@ -11,13 +12,9 @@ const Header = () => {
           <h1>Yts</h1>
         </div>
         <div className="button">
-          <button onClick={toggleTheme}>
-            {isDarkMode? 'Light Mode': 'Dark Mode' }
-          </button>
+          <ThemeToggleButton />
         </div>
-        <div>
-          
-        </div>
+        <div></div>
         <div className="nav-links">
           <ul>
             <li>
