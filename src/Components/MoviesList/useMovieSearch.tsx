@@ -6,7 +6,7 @@ interface Movie {
   Poster: string;
 }
 
-function useMovieSearch(defaultQuery: string = "star wars", apiKey: string = "263d22d8") {
+const useMovieSearch = (defaultQuery: string = "star wars", apiKey: string = "263d22d8") => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 

@@ -12,7 +12,9 @@
     .introduction {
     width: fit-content;
     margin: auto;
-    padding: 10px;
+    padding: 5px;
+    padding-top: 80px;
+    font-size:smaller;
 
     }
   }

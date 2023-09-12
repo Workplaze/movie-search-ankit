@@ -9,8 +9,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: aqua;
+  /* background-color: aqua; */
   height: 40px;
+  position: fixed;
+  top: 30px;
+  left: 0;
+  right: 0;
+  z-index: auto;
 
 }
 
@@ -28,9 +33,28 @@
 
 @media screen and (max-width: 400px) {
     .movieList {
-      width: 100%;
+    
       padding: 30px ;
       border: solid;
+    width: fit-content;
+
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .movies {
+      width: auto;
+      padding: 30px ;
+      margin: 40PX;
+    width: fit-content;
+
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .movieSearch {
+      width: 20px;
+      padding: 30px ;
     width: fit-content;
 
     }
