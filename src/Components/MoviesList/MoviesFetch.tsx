@@ -14,7 +14,9 @@ const MoviesFetch = () => {
   return (
     <div>
       <h1>Movies List</h1>
+      <div className="movieSearch">
       <MovieSearchInput onSearch={handleSearch} />
+      </div>
       {loading ? (
         <div>Loading...</div>
       ) : (
