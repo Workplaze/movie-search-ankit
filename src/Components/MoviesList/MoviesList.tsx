@@ -1,13 +1,22 @@
 import React from 'react';
-import "./style.css"
+import "./style.css";
 
-const MoviesList = (props:any) => {
+type Movie = {
+  Title: string;
+  Poster: string;
+}
 
-  console.log(props,"asdsafasfas")
+type MovieListProps = {
+  movies: Movie[];
+}
+
+const MoviesList: React.FC<MovieListProps>= (movies) => {
+
+ console.log(movies,"movies")
     
   return (
     <div className='movies'>
-        {props.movies.map((movie:any,index:any)=> (
+        {movies.movies.map((movie:any,index:any)=> (
             <div key={index} className='movieList'>
                 <img src={movie.Poster} alt='movie'/>
             </div>
