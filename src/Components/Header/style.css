@@ -21,6 +21,9 @@
     display: flex;
     gap: 20px;
   }
+  .button {
+    background-color: #fff;
+  }
   
   .nav-links li {
     background-color: blue;
