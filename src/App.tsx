@@ -1,16 +1,21 @@
-import React from 'react'
-import Header from './Components/Header';
-import Introduction from './Components/Introduction';
-import MoviesFetch from './Components/MoviesList/MoviesFetch';
+import React, { useContext } from "react";
+import Header from "./Components/Header";
+import Introduction from "./Components/Introduction";
+import MoviesFetch from "./Components/MoviesList/MoviesFetch";
+import { ThemeContext } from "./Components/ContextApi/ThemeContext";
 
 const App = () => {
-  return (
-    <div>
-      <Header/>
-      <Introduction/>
-      <MoviesFetch/>
-    </div>
-  )
-}
+  const theme = useContext(ThemeContext);
 
-export default App
+  return (
+    <div
+      style={{ backgroundColor: theme.primary.main, color: theme.primary.text }}
+    >
+      <Header />
+      <Introduction />
+      <MoviesFetch />
+    </div>
+  );
+};
+
+export default App;

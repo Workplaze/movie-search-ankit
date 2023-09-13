@@ -1,19 +1,14 @@
 import React from "react";
 import "./style.css";
-import { useTheme } from "../ContextApi/ThemeContext";
-import ThemeToggleButton from "../ThemeToggleButton";
 
 const Header = () => {
-  const { isDarkMode, toggleTheme } = useTheme();
   return (
     <div className="header">
       <div className="nav">
         <div>
           <h1>Yts</h1>
         </div>
-        <div className="button">
-          <ThemeToggleButton />
-        </div>
+        <div className="button"></div>
         <div></div>
         <div className="nav-links">
           <ul>

@@ -1,14 +1,7 @@
-import React from 'react';
-import { useTheme } from './ContextApi/ThemeContext';
+import React from "react";
 
 const ThemeToggleButton = () => {
-  const { isDarkMode, toggleTheme } = useTheme();
-
-  return (
-    <button onClick={toggleTheme}>
-      {isDarkMode ? 'Light Mode' : 'Dark Mode'}
-    </button>
-  );
-}
+  return <div></div>;
+};
 
 export default ThemeToggleButton;
