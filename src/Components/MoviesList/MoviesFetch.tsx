@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MoviesList from "./MoviesList";
 import MovieSearchInput from "./MovieSearchInput";
-import useMovieSearch from "./useMovieSearch";
+import useMovieSearch from "../Hooks/useMovieSearch";
 
 const MoviesFetch = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");

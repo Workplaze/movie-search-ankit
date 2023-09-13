@@ -8,9 +8,8 @@ const Header = () => {
         <div>
           <h1>Yts</h1>
         </div>
-        <div>
-          
-        </div>
+        <div className="button"></div>
+        <div></div>
         <div className="nav-links">
           <ul>
             <li>
