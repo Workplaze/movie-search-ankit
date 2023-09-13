@@ -6,7 +6,10 @@ interface Movie {
   Poster: string;
 }
 
-const useMovieSearch = (defaultQuery: string = "star wars", apiKey: string = "263d22d8") => {
+const useMovieSearch = (
+  defaultQuery: string = "star wars",
+  apiKey: string = "263d22d8"
+) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -14,7 +17,7 @@ const useMovieSearch = (defaultQuery: string = "star wars", apiKey: string = "26
     const fetchMovies = async () => {
       setLoading(true);
       try {
-        const url = `http://www.omdbapi.com/?s=${defaultQuery}&apikey=${apiKey}`;
+        const url = `https://www.omdbapi.com/?s=${defaultQuery}&apikey=${apiKey}`;
         const response = await axios.get(url);
         console.log(response, "response");
         setMovies(response.data.Search);
@@ -29,6 +32,6 @@ const useMovieSearch = (defaultQuery: string = "star wars", apiKey: string = "26
   }, [defaultQuery, apiKey]);
 
   return { movies, loading };
-}
+};
 
 export default useMovieSearch;
