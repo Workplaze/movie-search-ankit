@@ -1,5 +1,6 @@
 // CreateUser.js
 import React, { useState } from "react";
+import "tailwindcss/tailwind.css";
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../Apollo/mutation/CREATE_USER";
 
@@ -48,8 +49,7 @@ const CreateUser = () => {
   };
 
   return (
-    <div>
-      <h2>Create User</h2>
+    <div className="border p-5 m-5">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -57,6 +57,7 @@ const CreateUser = () => {
           value={formData.first_name}
           onChange={handleInputChange}
           placeholder="First Name"
+          className="p-2 border border-black m-4 text-black"
         />
         <input
           type="text"
@@ -64,6 +65,7 @@ const CreateUser = () => {
           value={formData.last_name}
           onChange={handleInputChange}
           placeholder="Last Name"
+          className="p-2 border border-black m-4 text-black"
         />
         <input
           type="text"
@@ -71,6 +73,7 @@ const CreateUser = () => {
           value={formData.address}
           onChange={handleInputChange}
           placeholder="Address"
+          className="p-2 border border-black m-4 text-black"
         />
         <input
           type="text"
@@ -78,6 +81,7 @@ const CreateUser = () => {
           value={formData.dob}
           onChange={handleInputChange}
           placeholder="Date of Birth"
+          className="p-2 border border-black m-4 text-black"
         />
         <input
           type="text"
@@ -85,6 +89,7 @@ const CreateUser = () => {
           value={formData.email_id}
           onChange={handleInputChange}
           placeholder="Email"
+          className="p-2 border border-black m-4 text-black"
         />
         <input
           type="text"
@@ -92,6 +97,7 @@ const CreateUser = () => {
           value={formData.gender}
           onChange={handleInputChange}
           placeholder="Gender"
+          className="p-2 border border-black m-4 text-black"
         />
         <input
           type="number"
@@ -99,8 +105,10 @@ const CreateUser = () => {
           value={formData.mobile_number}
           onChange={handleInputChange}
           placeholder="Mobile Number"
+          className="p-2 border border-black m-4 placeholder-gra text-black"
+          
         />
-        <button type="submit">Create User</button>
+        <button className="border p-2 shadow-md shadow-black " type="submit">Create User</button>
       </form>
     </div>
   );
