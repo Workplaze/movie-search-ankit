@@ -35,7 +35,7 @@ const UserData = () => {
         <button onClick={() => setIsModalOpen(true)}>Create User</button>
 
         {isModalOpen && (
-          <div className="modal">
+          <div className="modal" style={{backgroundColor: "gray",margin:"10px",padding:"20px"}}>
             <div className="modal-content">
               <span className="close" onClick={() => setIsModalOpen(false)}>
                 &times;
@@ -47,7 +47,7 @@ const UserData = () => {
 
         <ul>
           {data.user.map((userData: any) => (
-            <li key={userData.id} className="mr-4">
+            <li key={userData.id} style={{background:"to-yellow-900"}}>
               <p style={{ display: "inline-block", marginRight: "10px" }}>
                 First Name: {userData.first_name}
               </p>
