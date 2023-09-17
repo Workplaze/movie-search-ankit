@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import CreateUser from "./CreateUser";
 import "tailwindcss/tailwind.css";
+import DeleteUser from "./DeleteUser";
 
 const GET_USERDATA = gql`
   query MyQuery {
@@ -25,16 +26,15 @@ const UserData = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-  console.log(data);
 
   return (
     <div className="p-10 m-5">
-      <div className="mt-5 ">
+      <div className="mt-5">
         <h2 className="font-extrabold text-2xl text-sky-300">
           User Information
         </h2>
 
-        <div className="border content-around w-32 text-center bg-slate-900 m-3">
+        <div className="border content-around w-32">
           <button onClick={() => setIsModalOpen(true)}>Create User</button>
         </div>
 
@@ -44,7 +44,7 @@ const UserData = () => {
             style={{ backgroundColor: "gray", margin: "10px", padding: "20px" }}
           >
             <div className="modal-content">
-              <span className="border" onClick={() => setIsModalOpen(false)}>
+              <span className="close" onClick={() => setIsModalOpen(false)}>
                 &times;
               </span>
               <CreateUser />
@@ -54,19 +54,20 @@ const UserData = () => {
 
         <ul>
           {data.user.map((userData: any) => (
-            <li key={userData.id} className="bg-blue-900 m-5">
-              <p className="inline-block m-2">
-                <p className="text-gray-500">First Name:</p> {userData.first_name}
+            <li key={userData.id} style={{ background: "to-yellow-900" }}>
+              <p style={{ display: "inline-block", marginRight: "10px" }}>
+                First Name: {userData.first_name}
               </p>
-              <p className="inline-block m-2">
-              <p className="text-gray-500">Last Name:</p> {userData.last_name}
+              <p style={{ display: "inline-block", marginRight: "10px" }}>
+                Last Name: {userData.last_name}
               </p>
-              <p className="inline-block m-2">
-              <p className="text-gray-500">Email:</p> {userData.email_id}
+              <p style={{ display: "inline-block", marginRight: "10px" }}>
+                Email: {userData.email_id}
               </p>
-              <p className="inline-block m-2">
-              <p className="text-gray-500"> Gender:</p> {userData.gender}
+              <p style={{ display: "inline-block", marginRight: "10px" }}>
+                Gender: {userData.gender}
               </p>
+              <DeleteUser userId={userData.id} refetchUserData={() => {}} />
             </li>
           ))}
         </ul>
