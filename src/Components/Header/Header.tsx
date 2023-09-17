@@ -30,7 +30,7 @@ const Header = () => {
               <a href="/">4K</a>
             </li>
             <li>
-              <Link to="/userdata">Home</Link>
+              <a href="/userdata">Home</a>
             </li>
             <li>
               <a href="/">Browse Movies</a>
