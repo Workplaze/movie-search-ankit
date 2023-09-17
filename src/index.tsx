@@ -4,15 +4,19 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeContextProvider } from "./Components/ContextApi/ThemeContext";
+import { ApolloProvider } from "@apollo/client";
+import Client from "./Components/Apollo/Client";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <ThemeContextProvider>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <ApolloProvider client={Client}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </ApolloProvider>
   </ThemeContextProvider>
 );
 
