@@ -2,8 +2,6 @@ import React, { useContext } from "react";
 import { ApolloProvider } from "@apollo/client";
 import { Routes, Route } from "react-router-dom"; // Import Routes and Route
 import Header from "./Components/Header";
-import Introduction from "./Components/Introduction";
-import MoviesFetch from "./Components/MoviesList/MoviesFetch";
 import { ThemeContext } from "./Components/ContextApi/ThemeContext";
 import UserData from "./Components/User/UserData";
 import Client from "./Components/Apollo/Client";

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./style.css";
-import { Link } from "react-router-dom";
 
 const Header = () => {
   const [navActive, setNavActive] = useState(false);
@@ -30,7 +29,7 @@ const Header = () => {
               <a href="/">4K</a>
             </li>
             <li>
-              <Link to="/userdata">Home</Link>
+              <a href="/userdata">UserData</a>
             </li>
             <li>
               <a href="/">Browse Movies</a>
