@@ -34,17 +34,17 @@ const UserData = () => {
           User Information
         </h2>
 
-        <div className="border content-around w-32">
+        <div className="border content-around w-32 bg-gray-700 text-center shadow-md shadow-stone-400-">
           <button onClick={() => setIsModalOpen(true)}>Create User</button>
         </div>
 
         {isModalOpen && (
           <div
-            className="modal"
+          
             style={{ backgroundColor: "gray", margin: "10px", padding: "20px" }}
           >
-            <div className="modal-content">
-              <span className="close" onClick={() => setIsModalOpen(false)}>
+            <div className="justify-center items-center flex">
+              <span className="border bg-red-500" onClick={() => setIsModalOpen(false)}>
                 &times;
               </span>
               <CreateUser />
@@ -54,19 +54,20 @@ const UserData = () => {
 
         <ul>
           {data.user.map((userData: any) => (
-            <li key={userData.id} style={{ background: "to-yellow-900" }}>
-              <p style={{ display: "inline-block", marginRight: "10px" }}>
-                First Name: {userData.first_name}
+            <li key={userData.id} className="m-5 bg-gray-800  sm:rounded-full">
+              <p className="m-5 inline-block">
+               <h1 className="text-sm text-orange-600"> First Name:</h1> {userData.first_name}
               </p>
-              <p style={{ display: "inline-block", marginRight: "10px" }}>
-                Last Name: {userData.last_name}
+              <p className="m-5 inline-block">
+              <h1 className="text-sm text-orange-600">Last Name:</h1> {userData.last_name}
               </p>
-              <p style={{ display: "inline-block", marginRight: "10px" }}>
-                Email: {userData.email_id}
+              <p className="m-5 inline-block">
+              <h1 className="text-sm text-orange-600">Email:</h1> {userData.email_id}
               </p>
-              <p style={{ display: "inline-block", marginRight: "10px" }}>
-                Gender: {userData.gender}
+              <p className="m-5 inline-block">
+              <h1 className="text-sm text-orange-600">Gender:</h1> {userData.gender}
               </p>
+
               <DeleteUser userId={userData.id} refetchUserData={() => {}} />
             </li>
           ))}
