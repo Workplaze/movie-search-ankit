@@ -21,6 +21,7 @@ const DeleteUser: React.FC<DeleteUserProps> = ({
       console.log("User deleted:", data);
       refetchUserData();
     } catch (error) {
+        alert(error)
       console.error("Error deleting user:", error);
     }
   };
