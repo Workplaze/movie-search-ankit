@@ -17,7 +17,7 @@ const CreateUser = () => {
 
   const [insertUser] = useMutation(CREATE_USER);
 
-  const handleInputChange = (e:any) => {
+  const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -25,7 +25,7 @@ const CreateUser = () => {
     });
   };
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       const { data } = await insertUser({
@@ -33,7 +33,7 @@ const CreateUser = () => {
           user: formData,
         },
       });
-      console.log("User inserted:", data.insert_user.returning[0]);
+      console.log("User inserted:", data.insert_user);
       setFormData({
         first_name: "",
         last_name: "",
@@ -106,9 +106,10 @@ const CreateUser = () => {
           onChange={handleInputChange}
           placeholder="Mobile Number"
           className="p-2 border border-black m-4 placeholder-gra text-black"
-          
         />
-        <button className="border p-2 shadow-md shadow-black " type="submit">Create User</button>
+        <button className="border p-2 shadow-md shadow-black " type="submit">
+          Create User
+        </button>
       </form>
     </div>
   );
