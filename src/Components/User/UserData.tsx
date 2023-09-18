@@ -40,11 +40,13 @@ const UserData = () => {
 
         {isModalOpen && (
           <div
-          
             style={{ backgroundColor: "gray", margin: "10px", padding: "20px" }}
           >
             <div className="justify-center items-center flex">
-              <span className="border bg-red-500" onClick={() => setIsModalOpen(false)}>
+              <span
+                className="border bg-red-500"
+                onClick={() => setIsModalOpen(false)}
+              >
                 &times;
               </span>
               <CreateUser />
@@ -56,16 +58,20 @@ const UserData = () => {
           {data.user.map((userData: any) => (
             <li key={userData.id} className="m-5 bg-gray-800  sm:rounded-full">
               <p className="m-5 inline-block">
-               <h1 className="text-sm text-orange-600"> First Name:</h1> {userData.first_name}
+                <h1 className="text-sm text-orange-600"> First Name:</h1>{" "}
+                {userData.first_name}
               </p>
               <p className="m-5 inline-block">
-              <h1 className="text-sm text-orange-600">Last Name:</h1> {userData.last_name}
+                <h1 className="text-sm text-orange-600">Last Name:</h1>{" "}
+                {userData.last_name}
               </p>
               <p className="m-5 inline-block">
-              <h1 className="text-sm text-orange-600">Email:</h1> {userData.email_id}
+                <h1 className="text-sm text-orange-600">Email:</h1>{" "}
+                {userData.email_id}
               </p>
               <p className="m-5 inline-block">
-              <h1 className="text-sm text-orange-600">Gender:</h1> {userData.gender}
+                <h1 className="text-sm text-orange-600">Gender:</h1>{" "}
+                {userData.gender}
               </p>
 
               <DeleteUser userId={userData.id} refetchUserData={() => {}} />
