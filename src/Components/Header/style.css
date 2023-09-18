@@ -28,8 +28,9 @@
 }
 
 .nav-links li {
-  background-color: blue;
+  background-color: transparent;
   padding: 10px 15px;
+  border-radius: 10px;
 }
 
 .nav-links li:hover {
