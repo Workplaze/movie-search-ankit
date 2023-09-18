@@ -26,6 +26,7 @@ const MovieSearchInput: React.FC<MovieSearchInputProps> = ({ onSearch }) => {
         placeholder="Search for movies..."
         value={query}
         onChange={handleInputChange}
+        className="placeholder-black text-black"
       />
       <button onClick={handleSearch}>Search</button>
     </div>
