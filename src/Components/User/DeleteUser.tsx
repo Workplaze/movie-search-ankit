@@ -24,7 +24,7 @@ const DeleteUser: React.FC<DeleteUserProps> = ({ userId, refetchUserData }) => {
   };
 
   return (
-    <button onClick={handleDeleteUser} className="text-red-500">
+    <button onClick={handleDeleteUser} className="text-red-500  hover:bg-red-500 hover:rounded-full hover:p-2 hover:text-yellow-300">
       Delete
     </button>
   );
