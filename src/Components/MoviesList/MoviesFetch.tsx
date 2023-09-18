@@ -13,7 +13,7 @@ const MoviesFetch = () => {
 
   return (
     <div>
-      <h1>Movies List</h1>
+      <h1 className="text-center underline text-2xl font-extrabold m-10">Movies List</h1>
       <div className="movieSearch">
       <MovieSearchInput onSearch={handleSearch} />
       </div>

@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface MovieSearchInputProps {
   onSearch: (query: string) => void;
 }
 
 const MovieSearchInput: React.FC<MovieSearchInputProps> = ({ onSearch }) => {
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
 
   const handleSearch = () => {
-    onSearch(query);
+    if (query.length > 2) {
+      onSearch(query);
+    } else {
+      alert("Query is too short. Please enter at least 3 characters.");
+    }
   };
 
   return (
@@ -22,6 +26,7 @@ const MovieSearchInput: React.FC<MovieSearchInputProps> = ({ onSearch }) => {
         placeholder="Search for movies..."
         value={query}
         onChange={handleInputChange}
+        className="placeholder-black text-black"
       />
       <button onClick={handleSearch}>Search</button>
     </div>
