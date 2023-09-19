@@ -26,7 +26,8 @@ const UserData = () => {
 
   const { loading, error, data } = useQuery(GET_USERDATA);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return <p className="flex text-center pt-40 text-4xl">Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   const openCreateModal = () => {
@@ -112,8 +113,8 @@ const UserData = () => {
         </ul>
 
         {isEditModalOpen && selectedUser && (
-          <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-8 shadow-lg z-50 ">
+          <div className="fixed inset-0 flex items-center overflow-scroll justify-center z-50">
+            <div className="bg-white rounded-lg p-2 shadow-lg z-50 ">
               <EditUser user={selectedUser} closeModal={closeEditModal} />
             </div>
           </div>

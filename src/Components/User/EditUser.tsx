@@ -52,11 +52,16 @@ const EditUser: React.FC<EditUserProps> = ({ user, closeModal }) => {
   console.log(formData, "formdata");
 
   return (
-    <div className="bg-slate-800 overflow-auto">
+    <div className="bg-slate-500 overflow-auto">
       <div className="flex items-end justify-between m-1 p-2">
         <h2 className="">Edit User Information</h2>
         <div className="">
-          <button className="bg-red-400 p-1 hover:bg-red-700 rounded-full" onClick={closeModal}>X</button>
+          <button
+            className="bg-red-400 p-1 hover:bg-red-700 rounded-full"
+            onClick={closeModal}
+          >
+            X
+          </button>
         </div>
       </div>
       <form onSubmit={handleSubmit}>
