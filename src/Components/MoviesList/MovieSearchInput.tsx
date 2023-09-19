@@ -28,7 +28,12 @@ const MovieSearchInput: React.FC<MovieSearchInputProps> = ({ onSearch }) => {
         onChange={handleInputChange}
         className="placeholder-black text-black"
       />
-      <button onClick={handleSearch}>Search</button>
+      <button
+        className="text-gray-400 p-1 hover:rounded-full m-2 hover:bg-stone-700"
+        onClick={handleSearch}
+      >
+        Search
+      </button>
     </div>
   );
 };
