@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [navActive, setNavActive] = useState(false);
@@ -12,7 +13,9 @@ const Header = () => {
     <div className={`header ${navActive ? "active" : ""}`}>
       <div className="nav">
         <div>
-          <h1 className="text-center p-2 m-2 text-2xl font-extrabold shadow-lg shadow-yellow-200">Yts</h1>
+          <h1 className="text-center p-2 m-2 text-2xl font-extrabold shadow-lg shadow-yellow-200">
+            Yts
+          </h1>
         </div>
         <div className="xl:hidden" onClick={toggleNav}>
           <div className={`nav-toggle ${navActive ? "active" : ""}`}>☰</div>
@@ -29,7 +32,7 @@ const Header = () => {
               <a href="/">4K</a>
             </li>
             <li>
-              <a href="/userdata">UserData</a>
+              <Link to="/userdata">UserData</Link>
             </li>
             <li>
               <a href="/">Browse Movies</a>
