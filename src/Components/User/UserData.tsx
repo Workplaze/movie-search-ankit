@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import CreateUser from "./CreateUser";
 import EditUser from "./EditUser";
 import DeleteUser from "./DeleteUser";
+import { ThemeContext } from "../ContextApi/ThemeContext";
 
 const GET_USERDATA = gql`
   query MyQuery {
@@ -34,6 +35,7 @@ const UserData = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [userRoleFilter, setUserRoleFilter] = useState("");
+  const { darkMode } = useContext(ThemeContext);
 
   const {
     loading: userDataLoading,
@@ -100,26 +102,44 @@ const UserData = () => {
         </div>
 
         {isCreateModalOpen && (
-          <div className="fixed inset-10 bg-slate-500 z-50 overflow-x-scroll m-10">
-            <div className="bg-white rounded-lg p-2 shadow-lg ">
+          <div className="fixed inset-10 z-50 overflow-x-scroll m-10">
+            <div
+              className={
+                darkMode
+                  ? "bg-slate-400 rounded-lg p-2 shadow-lg "
+                  : "bg-gray-700 rounded-lg p-2 shadow-lg "
+              }
+            >
               <CreateUser close={closeCreateModal} />
             </div>
           </div>
         )}
 
         <div className="mt-4">
-          <label className="text-gray-300 font-semibold">
+          <label
+            className={
+              darkMode
+                ? "text-dark p-2  font-semibold"
+                : "text-yellow-50 p-2  font-semibold"
+            }
+          >
             Filter by UserRole:
           </label>
           <select
-            className="p-2 border rounded-md"
+            className="text-black p-2 border rounded-md"
             onChange={(e) => filterByUserRole(e.target.value)}
             value={userRoleFilter}
           >
-            <option value="">All</option>
+            <option className="text-black" value="">
+              All
+            </option>
             {filterOptionsData.distinct_roles.map(
               (roleOption: any, index: number) => (
-                <option key={index} value={roleOption.role}>
+                <option
+                  key={index}
+                  className="text-black"
+                  value={roleOption.role}
+                >
                   {roleOption.role}
                 </option>
               )
@@ -170,7 +190,13 @@ const UserData = () => {
 
         {isEditModalOpen && selectedUser && (
           <div className="fixed inset-10 bg-slate-500 z-50 overflow-x-scroll m-10">
-            <div className="bg-white rounded-lg p-2 shadow-lg ">
+            <div
+              className={
+                darkMode
+                  ? "bg-slate-400 rounded-lg p-2 shadow-lg "
+                  : "bg-gray-700 rounded-lg p-2 shadow-lg "
+              }
+            >
               <EditUser user={selectedUser} closeModal={closeEditModal} />
             </div>
           </div>

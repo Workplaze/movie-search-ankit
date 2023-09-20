@@ -1,16 +1,23 @@
-import React, { ReactNode, createContext } from "react";
-import { theme } from "./theme";
+import { createContext, useState } from "react";
 
-type ThemeContextProviderProps = {
-  children: ReactNode;
-};
+const ThemeContext = createContext<{
+  darkMode: boolean;
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+}>({
+  darkMode: false,
+  setDarkMode: () => {},
+});
 
-export const ThemeContext = createContext(theme);
+const ThemeContextProvider = (props: any) => {
+  const [darkMode, setDarkMode] = useState(false);
 
-export const ThemeContextProvider = ({
-  children,
-}: ThemeContextProviderProps) => {
   return (
-    <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+    <div>
+      <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+        {props.children}
+      </ThemeContext.Provider>
+    </div>
   );
 };
+
+export { ThemeContext, ThemeContextProvider };
