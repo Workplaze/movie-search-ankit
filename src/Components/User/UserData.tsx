@@ -102,7 +102,7 @@ const UserData = () => {
         {isCreateModalOpen && (
           <div className="fixed inset-0 flex items-center overflow-scroll justify-center z-50">
             <div className="absolute  bg-gray-900"></div>
-            <div className="">
+            <div className="bg-white rounded-lg p-2 shadow-lg z-50 ">
               <CreateUser close={closeCreateModal} />
             </div>
           </div>

@@ -15,15 +15,7 @@
   align-items: center;
 }
 
-Link {
-  color: #007bff; 
-  text-decoration: none; 
-  font-weight: bold; 
-}
 
-Link :hover{
-background-color: #fff;
-}
 
 .nav-links ul {
   list-style-type: none;
@@ -39,12 +31,12 @@ background-color: #fff;
 
 .nav-links li {
   background-color: transparent;
-  padding: 10px 15px;
+  padding: 5px 10px;
   border-radius: 10px;
 }
 
 .nav-links li:hover {
-  background-color: black;
+  text-decoration: underline;
 }
 
 .nav-links a {

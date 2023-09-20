@@ -22,17 +22,23 @@ const Header = () => {
           <ul>
             <div>
               <li>
-                <Link to="/">Home</Link>
+                <Link className="nav-links" to="/">
+                  Home
+                </Link>
               </li>
             </div>
             <div>
               <li>
-                <a href="/">3D</a>
+                <Link className="nav-links" to="/">
+                  3D
+                </Link>
               </li>
             </div>
             <div>
               <li>
-                <a href="/">4K</a>
+                <Link className="nav-links" to="/">
+                  4K
+                </Link>
               </li>
             </div>
             <div>
