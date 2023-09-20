@@ -15,6 +15,16 @@
   align-items: center;
 }
 
+Link {
+  color: #007bff; 
+  text-decoration: none; 
+  font-weight: bold; 
+}
+
+Link :hover{
+background-color: #fff;
+}
+
 .nav-links ul {
   list-style-type: none;
   margin: 0;

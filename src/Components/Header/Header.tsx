@@ -12,10 +12,8 @@ const Header = () => {
   return (
     <div className={`header ${navActive ? "active" : ""}`}>
       <div className="nav">
-        <div>
-          <h1 className="text-center p-2 m-2 text-2xl font-extrabold shadow-lg shadow-yellow-200">
-            Yts
-          </h1>
+        <div className="text-center p-2 m-2 text-2xl font-extrabold shadow-lg shadow-yellow-200">
+          <Link to="/">YTS</Link>
         </div>
         <div className="xl:hidden" onClick={toggleNav}>
           <div className={`nav-toggle ${navActive ? "active" : ""}`}>☰</div>

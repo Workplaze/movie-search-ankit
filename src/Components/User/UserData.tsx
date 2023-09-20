@@ -100,15 +100,9 @@ const UserData = () => {
         </div>
 
         {isCreateModalOpen && (
-          <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="fixed inset-0 flex items-center overflow-scroll justify-center z-50">
             <div className="absolute  bg-gray-900"></div>
-            <div className="bg-slate-400 rounded-lg p-8 shadow-lg z-50">
-              <span
-                className="absolute top-20 right-10 text-3xl m-2 text-gray-200 rounded p-2 on hover:bg-red-400 bg-black cursor-pointer"
-                onClick={closeCreateModal}
-              >
-                &times;
-              </span>
+            <div className="">
               <CreateUser close={closeCreateModal} />
             </div>
           </div>
