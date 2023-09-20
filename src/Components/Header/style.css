@@ -46,12 +46,10 @@
 @media screen and (max-width: 768px) {
   .nav-links {
     display: none;
-    flex-direction: column;
+    flex-direction: row;
     position: absolute;
-    top: 60px;
-    left: 0;
     background-color: #333;
-    width: 100%;
+    width: fit-content;
     
   }
 
@@ -65,7 +63,7 @@
   }
 
   .nav-toggle.active {
-    background-color: #333;
+    background-color: #485d5f;
   }
   .nav-links.active {
     display: block;
