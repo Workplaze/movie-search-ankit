@@ -3,49 +3,57 @@ import { gql, useQuery } from "@apollo/client";
 import CreateUser from "./CreateUser";
 import EditUser from "./EditUser";
 import DeleteUser from "./DeleteUser";
-import Dropdown from "react-bootstrap/Dropdown";
 
 const GET_USERDATA = gql`
   query MyQuery {
     user {
+      id
+      address
       dob
       email_id
-      address
       first_name
       gender
-      id
       last_name
       mobile_number
+      role
       status
+    }
+  }
+`;
+
+const GET_FILTER_OPTIONS = gql`
+  query FilterOptions {
+    distinct_roles: user(distinct_on: role) {
       role
     }
   }
 `;
 
-interface userdata {
-  address: string;
-  dob: string;
-  email_id: string;
-  first_name: string;
-  gender: string;
-  id: string;
-  last_name: string;
-  mobile_number: number;
-  role: any;
-  status: any;
-}
-
 const UserData = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [filter, setFilter] = useState("all");
+  const [userRoleFilter, setUserRoleFilter] = useState("");
 
-  const { loading, error, data } = useQuery(GET_USERDATA);
+  const {
+    loading: userDataLoading,
+    error: userDataError,
+    data: userData,
+  } = useQuery(GET_USERDATA);
 
-  if (loading)
-    return <p className="flex text-center pt-40 text-4xl">Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  const {
+    loading: filterOptionsLoading,
+    error: filterOptionsError,
+    data: filterOptionsData,
+  } = useQuery(GET_FILTER_OPTIONS);
+
+  if (userDataLoading || filterOptionsLoading) return <p>Loading...</p>;
+  if (userDataError || filterOptionsError)
+    return (
+      <p>Error: {userDataError?.message || filterOptionsError?.message}</p>
+    );
+
+  console.log(filterOptionsData, "filerData");
 
   const openCreateModal = () => {
     setIsCreateModalOpen(true);
@@ -64,23 +72,16 @@ const UserData = () => {
     setSelectedUser(null);
     setIsEditModalOpen(false);
   };
-  console.log(data, "data");
 
-  console.log(filter, "filter");
-
-  const handleFilterChange = (value: any) => {
-    setFilter(value);
+  const filterByUserRole = (role: any) => {
+    setUserRoleFilter(role);
   };
 
-  const filteredData = data?.user?.filter((person: any) => {
-    if (filter === "all") {
-      return true;
-    } else if (filter === "true" && person.status === true) {
-      return true;
-    } else if (filter === "false" && person.status === false) {
-      return true;
+  const filteredUserData = userData.user.filter((user: any) => {
+    if (userRoleFilter && user.role !== userRoleFilter) {
+      return false;
     }
-    return false;
+    return true;
   });
 
   return (
@@ -89,7 +90,6 @@ const UserData = () => {
         <h2 className="font-extrabold text-2xl text-gray-800 text-center bg-blue-300 p-4">
           User Information
         </h2>
-
         <div className="flex justify-center mt-4">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
@@ -97,22 +97,6 @@ const UserData = () => {
           >
             Create User
           </button>
-        </div>
-        <div>
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              Filter
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              <Dropdown.Item onClick={() => handleFilterChange("all")}>
-                All
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => handleFilterChange("true")}>
-                status
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
         </div>
 
         {isCreateModalOpen && (
@@ -125,13 +109,33 @@ const UserData = () => {
               >
                 &times;
               </span>
-              <CreateUser />
+              <CreateUser close={closeCreateModal} />
             </div>
           </div>
         )}
 
+        <div className="mt-4">
+          <label className="text-gray-300 font-semibold">
+            Filter by UserRole:
+          </label>
+          <select
+            className="p-2 border rounded-md"
+            onChange={(e) => filterByUserRole(e.target.value)}
+            value={userRoleFilter}
+          >
+            <option value="">All</option>
+            {filterOptionsData.distinct_roles.map(
+              (roleOption: any, index: number) => (
+                <option key={index} value={roleOption.role}>
+                  {roleOption.role}
+                </option>
+              )
+            )}
+          </select>
+        </div>
+
         <ul className="mt-8">
-          {filteredData.map((userData: userdata) => (
+          {filteredUserData.map((userData: any) => (
             <li
               key={userData.id}
               className="bg-gray-100 p-4 my-4 rounded-lg shadow-lg sm:flex sm:flex-row"

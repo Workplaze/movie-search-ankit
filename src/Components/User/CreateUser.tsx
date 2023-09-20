@@ -4,7 +4,11 @@ import "tailwindcss/tailwind.css";
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../Apollo/mutation/CREATE_USER";
 
-const CreateUser = () => {
+type CreateUserProps = {
+  close: () => void;
+};
+
+const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -34,6 +38,7 @@ const CreateUser = () => {
         },
       });
       console.log("User inserted:", data.insert_user);
+      close();
       setFormData({
         first_name: "",
         last_name: "",
