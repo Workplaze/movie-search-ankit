@@ -8,6 +8,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import { ApolloProvider } from "@apollo/client";
 import Client from "./Components/Apollo/Client";
 import { BrowserRouter } from "react-router-dom";
+import "react-responsive-modal/styles.css";
 import { ThemeContextProvider } from "./Components/ContextApi/ThemeContext";
 
 const root = ReactDOM.createRoot(

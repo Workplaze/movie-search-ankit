@@ -54,7 +54,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
   };
 
   return (
-    <div className="bg-slate-500 overflow-auto p-4 h-auto mt-10 w-72">
+    <div className=" overflow-auto m-2">
       <div className="flex items-end justify-between p-4">
         <h2 className="">Create User</h2>
         <div className="">

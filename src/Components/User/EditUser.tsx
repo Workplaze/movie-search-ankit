@@ -52,7 +52,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, closeModal }) => {
   console.log(formData, "formdata");
 
   return (
-    <div className="bg-slate-500 overflow-auto">
+    <div className=" overflow-auto m-2">
       <div className="flex items-end justify-between m-1 p-2">
         <h2 className="">Edit User Information</h2>
         <div className="">
@@ -65,101 +65,85 @@ const EditUser: React.FC<EditUserProps> = ({ user, closeModal }) => {
         </div>
       </div>
       <form onSubmit={handleSubmit}>
-        <li>
-          <label>
-            First Name:
-            <input
-              type="text"
-              name="first_name"
-              value={formData.first_name}
-              onChange={handleChange}
-              className="text-black m-2 p-2 border border-black"
-            />
-          </label>
+        <li className="flex flex-col justify-between p-2">
+          <label>First Name:</label>
+          <input
+            type="text"
+            name="first_name"
+            value={formData.first_name}
+            onChange={handleChange}
+            className="text-black m-2 p-2 border border-black"
+          />
         </li>
-        <li>
-          <label>
-            Last Name:
-            <input
-              type="text"
-              name="last_name"
-              value={formData.last_name}
-              onChange={handleChange}
-              className="text-black m-2 p-2 border border-black"
-            />
-          </label>
+        <li className="flex flex-col justify-between p-2">
+          <label>Last Name:</label>
+          <input
+            type="text"
+            name="last_name"
+            value={formData.last_name}
+            onChange={handleChange}
+            className="text-black m-2 p-2 border border-black"
+          />
         </li>
-        <li>
-          <label>
-            Email id:
-            <input
-              type="text"
-              name="email_id"
-              value={formData.email_id}
-              onChange={handleChange}
-              className="text-black m-2 p-2 border border-black"
-            />
-          </label>
+        <li className="flex flex-col justify-between p-2">
+          <label>Email id:</label>
+          <input
+            type="text"
+            name="email_id"
+            value={formData.email_id}
+            onChange={handleChange}
+            className="text-black m-2 p-2 border border-black"
+          />
         </li>
-        <li>
-          <label>
-            Gender :
-            <input
-              type="text"
-              name="gender"
-              value={formData.gender}
-              onChange={handleChange}
-              className="text-black m-2 p-2 border border-black"
-            />
-          </label>
+        <li className="flex flex-col justify-between p-2">
+          <label>Gender :</label>
+          <input
+            type="text"
+            name="gender"
+            value={formData.gender}
+            onChange={handleChange}
+            className="text-black m-2 p-2 border border-black"
+          />
         </li>
-        <li>
-          <label>
-            Mobile Number :
-            <input
-              type="text"
-              name="mobile_number"
-              value={formData.mobile_number}
-              onChange={handleChange}
-              className="text-black m-2 p-2 border border-black"
-            />
-          </label>
+        <li className="flex flex-col justify-between p-2">
+          <label>Mobile Number :</label>
+          <input
+            type="text"
+            name="mobile_number"
+            value={formData.mobile_number}
+            onChange={handleChange}
+            className="text-black m-2 p-2 border border-black"
+          />
         </li>
-        <li>
-          <label>
-            Mobile Number :
-            <input
-              type="text"
-              name="mobile_number"
-              value={formData.mobile_number}
-              onChange={handleChange}
-              className="text-black m-2 p-2 border border-black"
-            />
-          </label>
+        <li className="flex flex-col justify-between p-2">
+          <label>Mobile Number :</label>
+          <input
+            type="text"
+            name="mobile_number"
+            value={formData.mobile_number}
+            onChange={handleChange}
+            className="text-black m-2 p-2 border border-black"
+          />
         </li>
-        <li>
-          <label>
-            DOB :
-            <input
-              type="text"
-              name="dob"
-              value={formData.dob}
-              onChange={handleChange}
-              className="text-black m-2 p-2 border border-black"
-            />
-          </label>
+        <li className="flex flex-col justify-between p-2">
+          <label>DOB :</label>
+          <input
+            type="text"
+            name="dob"
+            value={formData.dob}
+            onChange={handleChange}
+            className="text-black m-2 p-2 border border-black"
+          />
         </li>
-        <li>
-          <label>
-            Address :
-            <input
-              type="text"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              className="text-black m-2 p-2 border border-black"
-            />
-          </label>
+        <li className="flex flex-col justify-between p-2">
+          <label>Address :</label>
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            className="text-black m-2 p-2 border border-black"
+          />
         </li>
         <div className="flex justify-center items-center border rounded-full p-2 m-4 bg-slate-300 text-black shadow-md shadow-black hover:shadow-orange-700">
           <button type="submit">Update User</button>

@@ -100,9 +100,8 @@ const UserData = () => {
         </div>
 
         {isCreateModalOpen && (
-          <div className="fixed inset-0 flex items-center overflow-scroll justify-center z-50">
-            <div className="absolute  bg-gray-900"></div>
-            <div className="bg-white rounded-lg p-2 shadow-lg z-50 ">
+          <div className="fixed inset-10 bg-slate-500 z-50 overflow-x-scroll m-10">
+            <div className="bg-white rounded-lg p-2 shadow-lg ">
               <CreateUser close={closeCreateModal} />
             </div>
           </div>
@@ -170,8 +169,8 @@ const UserData = () => {
         </ul>
 
         {isEditModalOpen && selectedUser && (
-          <div className="fixed inset-0 flex items-center overflow-scroll justify-center z-50">
-            <div className="bg-white rounded-lg p-2 shadow-lg z-50 ">
+          <div className="fixed inset-10 bg-slate-500 z-50 overflow-x-scroll m-10">
+            <div className="bg-white rounded-lg p-2 shadow-lg ">
               <EditUser user={selectedUser} closeModal={closeEditModal} />
             </div>
           </div>
