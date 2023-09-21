@@ -1,17 +1,23 @@
-import React, { useContext, useState } from "react";
-import { gql, useQuery } from "@apollo/client";
+import React, { useContext, useState, useReducer } from "react";
+import { useQuery } from "@apollo/client";
 import CreateUser from "./CreateUser";
 import EditUser from "./EditUser";
 import DeleteUser from "./DeleteUser";
 import { ThemeContext } from "../ContextApi/ThemeContext";
 import { GET_FILTER_OPTIONS, GET_USERDATA } from "../Apollo/Query/Queries";
+import { userReducer, SET_USER_ROLE_FILTER } from "../UseReducer/UserReducer";
 
 const UserData = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [userRoleFilter, setUserRoleFilter] = useState("employee");
   const { darkMode } = useContext(ThemeContext);
+
+  const [state, dispatch] = useReducer(userReducer, {
+    userRoleFilter: "employee",
+  });
+
+  const userRoleFilter = state.userRoleFilter;
 
   const {
     loading: filterOptionsLoading,
@@ -54,7 +60,7 @@ const UserData = () => {
   };
 
   const filterByUserRole = (role: any) => {
-    setUserRoleFilter(role);
+    dispatch({ type: SET_USER_ROLE_FILTER, payload: role });
   };
 
   const userArray = userData?.user || [];
