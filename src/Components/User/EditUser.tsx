@@ -49,7 +49,6 @@ const EditUser: React.FC<EditUserProps> = ({ user, closeModal }) => {
       console.error("Error updating user data:", error);
     }
   };
-  console.log(formData, "formdata");
 
   return (
     <div className=" overflow-auto m-2 ">
@@ -57,14 +56,14 @@ const EditUser: React.FC<EditUserProps> = ({ user, closeModal }) => {
         <h2 className="">Edit User Information</h2>
         <div className="">
           <button
-            className="bg-red-400 p-1 hover:bg-red-700 rounded-full"
+            type="button"
             onClick={closeModal}
-          >
-            X
-          </button>
+            className="btn-close"
+            aria-label="Close"
+          ></button>
         </div>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form className="w-fit" onSubmit={handleSubmit}>
         <li className="flex flex-col justify-between p-2">
           <label>First Name:</label>
           <input

@@ -1,17 +1,17 @@
-import React, { useContext, useState, useReducer, useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import CreateUser from "./CreateUser";
 import EditUser from "./EditUser";
+import CreateUser from "./CreateUser";
 import DeleteUser from "./DeleteUser";
+import { useQuery } from "@apollo/client";
 import { ThemeContext } from "../ContextApi/ThemeContext";
 import { GET_FILTER_OPTIONS, GET_USERDATA } from "../Apollo/Query/Queries";
+import React, { useContext, useState, useReducer, useEffect } from "react";
 import { userReducer, SET_USER_ROLE_FILTER } from "../UseReducer/UserReducer";
 
 const UserData = () => {
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [selectedUser, setSelectedUser] = useState(null);
   const { darkMode } = useContext(ThemeContext);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const [state, dispatch] = useReducer(userReducer, {
     userRoleFilter: localStorage.getItem("userRoleFilter") || "",
@@ -23,8 +23,6 @@ const UserData = () => {
     localStorage.setItem("userRoleFilter", userRoleFilter);
   }, [userRoleFilter]);
 
-  console.log(state, "state");
-
   const {
     loading: filterOptionsLoading,
     error: filterOptionsError,
@@ -35,6 +33,7 @@ const UserData = () => {
     loading: userDataLoading,
     error: userDataError,
     data: userData,
+    refetch,
   } = useQuery(GET_USERDATA, {
     variables: { role: userRoleFilter },
   });
@@ -53,6 +52,7 @@ const UserData = () => {
 
   const closeCreateModal = () => {
     setIsCreateModalOpen(false);
+    refetch();
   };
 
   const openEditModal = (user: any) => {
@@ -63,6 +63,7 @@ const UserData = () => {
   const closeEditModal = () => {
     setSelectedUser(null);
     setIsEditModalOpen(false);
+    refetch();
   };
 
   const filterByUserRole = (role: any) => {
@@ -91,8 +92,8 @@ const UserData = () => {
             <div
               className={
                 darkMode
-                  ? "bg-slate-400 rounded-lg p-2 shadow-lg "
-                  : "bg-gray-700 rounded-lg p-2 shadow-lg "
+                  ? "bg-slate-400 rounded-lg p-2 shadow-lg w-fit flex justify-center items-center "
+                  : "bg-gray-700 rounded-lg p-2 shadow-lg w-fit flex justify-center items-center "
               }
             >
               <CreateUser close={closeCreateModal} />
@@ -174,12 +175,12 @@ const UserData = () => {
         </ul>
 
         {isEditModalOpen && selectedUser && (
-          <div className="fixed inset-10 bg-slate-500 z-50 overflow-auto m-10">
+          <div className="fixed inset-10 bg-slate-500 w-fit z-50 overflow-auto m-10">
             <div
               className={
                 darkMode
-                  ? "bg-slate-400 rounded-lg p-2 shadow-lg "
-                  : "bg-gray-700 rounded-lg p-2 shadow-lg "
+                  ? "bg-slate-400 rounded-lg p-2  w-fit shadow-lg "
+                  : "bg-gray-700 rounded-lg p-2  w-fit shadow-lg "
               }
             >
               <EditUser user={selectedUser} closeModal={closeEditModal} />

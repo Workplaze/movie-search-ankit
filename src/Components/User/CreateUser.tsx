@@ -59,11 +59,11 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
         <h2 className="">Create User</h2>
         <div className="">
           <button
-            className="bg-red-400 p-1 hover:bg-red-700 rounded-full"
+            type="button"
             onClick={close}
-          >
-            X
-          </button>
+            className="btn-close"
+            aria-label="Close"
+          ></button>
         </div>
       </div>
       <form onSubmit={handleSubmit}>
@@ -141,78 +141,13 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
             className="text-black m-2 p-2 border border-black"
           />
         </li>
-        <div className="flex justify-center items-center border rounded-full p-2 m-4 bg-slate-300 text-black shadow-md shadow-black hover:shadow-orange-700">
-          <button type="submit">Create User</button>
-        </div>
+        <button className="flex justify-center items-center" type="submit">
+          <div className=" w-fit border rounded-full p-2 m-4 bg-slate-300 text-black shadow-md shadow-black hover:shadow-orange-700">
+            Create User
+          </div>
+        </button>
       </form>
     </div>
-
-    // <div className="bg-slate-500 overflow-auto">
-    //   <div className="flex flex-col m-1 p-2 ">
-    //     <h2 className="">Create User</h2>
-    //     <form onSubmit={handleSubmit} className="flex flex-col ">
-    //       <input
-    //         type="text"
-    //         name="first_name"
-    //         value={formData.first_name}
-    //         onChange={handleInputChange}
-    //         placeholder="First Name"
-    //         className="p-2 border border-black m-4 text-black"
-    //       />
-    //       <input
-    //         type="text"
-    //         name="last_name"
-    //         value={formData.last_name}
-    //         onChange={handleInputChange}
-    //         placeholder="Last Name"
-    //         className="p-2 border border-black m-4 text-black"
-    //       />
-    //       <input
-    //         type="text"
-    //         name="address"
-    //         value={formData.address}
-    //         onChange={handleInputChange}
-    //         placeholder="Address"
-    //         className="p-2 border border-black m-4 text-black"
-    //       />
-    //       <input
-    //         type="text"
-    //         name="dob"
-    //         value={formData.dob}
-    //         onChange={handleInputChange}
-    //         placeholder="Date of Birth"
-    //         className="p-2 border border-black m-4 text-black"
-    //       />
-    //       <input
-    //         type="text"
-    //         name="email_id"
-    //         value={formData.email_id}
-    //         onChange={handleInputChange}
-    //         placeholder="Email"
-    //         className="p-2 border border-black m-4 text-black"
-    //       />
-    //       <input
-    //         type="text"
-    //         name="gender"
-    //         value={formData.gender}
-    //         onChange={handleInputChange}
-    //         placeholder="Gender"
-    //         className="p-2 border border-black m-4 text-black"
-    //       />
-    //       <input
-    //         type="number"
-    //         name="mobile_number"
-    //         value={formData.mobile_number}
-    //         onChange={handleInputChange}
-    //         placeholder="Mobile Number"
-    //         className="p-2 border border-black m-4 placeholder-gra text-black"
-    //       />
-    //       <button className="border p-2 shadow-md shadow-black " type="submit">
-    //         Create User
-    //       </button>
-    //     </form>
-    //   </div>
-    // </div>
   );
 };
 

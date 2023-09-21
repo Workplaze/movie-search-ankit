@@ -11,7 +11,6 @@ const Header = () => {
   const toggleNav = () => {
     setNavActive(!navActive);
   };
-  console.log("first");
 
   return (
     <div
@@ -29,9 +28,7 @@ const Header = () => {
             YTS
           </div>
         </Link>
-        <div>
-          <ThemeToggleButton />
-        </div>
+
         <div className="xl:hidden" onClick={toggleNav}>
           <div className={`nav-toggle ${navActive ? "active" : ""}`}>☰</div>
         </div>
@@ -97,6 +94,9 @@ const Header = () => {
                 </a>
               </li>
             </div>
+            <li>
+              <ThemeToggleButton />
+            </li>
           </ul>
         </div>
       </div>
