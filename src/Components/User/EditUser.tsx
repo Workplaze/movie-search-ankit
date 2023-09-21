@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
-import { EDIT_USER } from "../Apollo/mutation/EDIT_USER";
+import { EDIT_USER } from "../Apollo/Mutation/EDIT_USER";
 
 type EditUserProps = {
   user: {
@@ -142,12 +142,14 @@ const EditUser: React.FC<EditUserProps> = ({ user, closeModal }) => {
             name="address"
             value={formData.address}
             onChange={handleChange}
-            className="text-black m-2 p-2 border border-black"
+            className="text-black  m-2 p-2 border border-black"
           />
         </li>
-        <div className="flex justify-center items-center border rounded-full p-2 m-4 bg-slate-300 text-black shadow-md shadow-black hover:shadow-orange-700">
-          <button type="submit">Update User</button>
-        </div>
+        <button type="submit">
+          <div className="flex justify-center items-center border rounded-full p-2 m-4 bg-slate-300 text-black shadow-md shadow-black hover:shadow-orange-700">
+            Update User
+          </div>
+        </button>
       </form>
     </div>
   );

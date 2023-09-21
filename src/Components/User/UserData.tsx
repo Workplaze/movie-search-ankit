@@ -4,37 +4,13 @@ import CreateUser from "./CreateUser";
 import EditUser from "./EditUser";
 import DeleteUser from "./DeleteUser";
 import { ThemeContext } from "../ContextApi/ThemeContext";
-
-const GET_USERDATA = gql`
-  query MyQuery($role: String!) {
-    user(where: { role: { _eq: $role } }) {
-      id
-      address
-      dob
-      email_id
-      first_name
-      gender
-      last_name
-      mobile_number
-      role
-      status
-    }
-  }
-`;
-
-const GET_FILTER_OPTIONS = gql`
-  query FilterOptions {
-    distinct_roles: user(distinct_on: role) {
-      role
-    }
-  }
-`;
+import { GET_FILTER_OPTIONS, GET_USERDATA } from "../Apollo/Query/Queries";
 
 const UserData = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [userRoleFilter, setUserRoleFilter] = useState("");
+  const [userRoleFilter, setUserRoleFilter] = useState("employee");
   const { darkMode } = useContext(ThemeContext);
 
   const {

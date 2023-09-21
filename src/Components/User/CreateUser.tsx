@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "tailwindcss/tailwind.css";
 import { useMutation } from "@apollo/client";
-import { CREATE_USER } from "../Apollo/mutation/CREATE_USER";
+import { CREATE_USER } from "../Apollo/Mutation/CREATE_USER";
 
 type CreateUserProps = {
   close: () => void;
