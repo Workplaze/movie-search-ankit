@@ -1,4 +1,4 @@
-import React, { useContext, useState, useReducer } from "react";
+import React, { useContext, useState, useReducer, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import CreateUser from "./CreateUser";
 import EditUser from "./EditUser";
@@ -14,10 +14,16 @@ const UserData = () => {
   const { darkMode } = useContext(ThemeContext);
 
   const [state, dispatch] = useReducer(userReducer, {
-    userRoleFilter: "employee",
+    userRoleFilter: localStorage.getItem("userRoleFilter") || "",
   });
 
   const userRoleFilter = state.userRoleFilter;
+
+  useEffect(() => {
+    localStorage.setItem("userRoleFilter", userRoleFilter);
+  }, [userRoleFilter]);
+
+  console.log(state, "state");
 
   const {
     loading: filterOptionsLoading,
