@@ -11,6 +11,7 @@ const Header = () => {
   const toggleNav = () => {
     setNavActive(!navActive);
   };
+  console.log("first");
 
   return (
     <div
