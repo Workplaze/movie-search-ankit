@@ -52,7 +52,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, closeModal }) => {
   console.log(formData, "formdata");
 
   return (
-    <div className=" overflow-auto m-2">
+    <div className=" overflow-auto m-2 ">
       <div className="flex items-end justify-between m-1 p-2">
         <h2 className="">Edit User Information</h2>
         <div className="">

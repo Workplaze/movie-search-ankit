@@ -6,8 +6,8 @@ import DeleteUser from "./DeleteUser";
 import { ThemeContext } from "../ContextApi/ThemeContext";
 
 const GET_USERDATA = gql`
-  query MyQuery {
-    user {
+  query MyQuery($role: String!) {
+    user(where: { role: { _eq: $role } }) {
       id
       address
       dob
@@ -38,24 +38,26 @@ const UserData = () => {
   const { darkMode } = useContext(ThemeContext);
 
   const {
-    loading: userDataLoading,
-    error: userDataError,
-    data: userData,
-  } = useQuery(GET_USERDATA);
-
-  const {
     loading: filterOptionsLoading,
     error: filterOptionsError,
     data: filterOptionsData,
   } = useQuery(GET_FILTER_OPTIONS);
 
+  const {
+    loading: userDataLoading,
+    error: userDataError,
+    data: userData,
+  } = useQuery(GET_USERDATA, {
+    variables: { role: userRoleFilter },
+  });
+
   if (userDataLoading || filterOptionsLoading) return <p>Loading...</p>;
-  if (userDataError || filterOptionsError)
+
+  if (userDataError || filterOptionsError) {
     return (
       <p>Error: {userDataError?.message || filterOptionsError?.message}</p>
     );
-
-  console.log(filterOptionsData, "filerData");
+  }
 
   const openCreateModal = () => {
     setIsCreateModalOpen(true);
@@ -79,12 +81,7 @@ const UserData = () => {
     setUserRoleFilter(role);
   };
 
-  const filteredUserData = userData.user.filter((user: any) => {
-    if (userRoleFilter && user.role !== userRoleFilter) {
-      return false;
-    }
-    return true;
-  });
+  const userArray = userData?.user || [];
 
   return (
     <div className="p-10 m-5">
@@ -102,7 +99,7 @@ const UserData = () => {
         </div>
 
         {isCreateModalOpen && (
-          <div className="fixed inset-10 z-50 overflow-x-scroll m-10">
+          <div className="fixed inset-10 z-50 overflow-x-auto m-10">
             <div
               className={
                 darkMode
@@ -131,10 +128,10 @@ const UserData = () => {
             value={userRoleFilter}
           >
             <option className="text-black" value="">
-              All
+              all
             </option>
             {filterOptionsData.distinct_roles.map(
-              (roleOption: any, index: number) => (
+              (roleOption: any, index: string) => (
                 <option
                   key={index}
                   className="text-black"
@@ -148,7 +145,7 @@ const UserData = () => {
         </div>
 
         <ul className="mt-8">
-          {filteredUserData.map((userData: any) => (
+          {userArray.map((userData: any) => (
             <li
               key={userData.id}
               className="bg-gray-100 p-4 my-4 rounded-lg shadow-lg sm:flex sm:flex-row"
@@ -189,7 +186,7 @@ const UserData = () => {
         </ul>
 
         {isEditModalOpen && selectedUser && (
-          <div className="fixed inset-10 bg-slate-500 z-50 overflow-x-scroll m-10">
+          <div className="fixed inset-10 bg-slate-500 z-50 overflow-auto m-10">
             <div
               className={
                 darkMode

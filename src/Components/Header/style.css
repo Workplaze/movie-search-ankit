@@ -50,17 +50,22 @@
     display: none;
     flex-direction: row;
     position: absolute;
+    padding: 10px;
     background-color: #333;
     width: fit-content;
     
   }
-
-  .header.active {
+  .header {
     height: auto;
   }
 
+  .header.active {
+    display: block;
+    color: #fff;
+  }
+
   .nav.active .nav-links {
-    display: flex;
+    display: inline;
     transform: translateY(0);
   }
 
