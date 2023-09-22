@@ -54,100 +54,104 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
   };
 
   return (
-    <div className=" overflow-auto m-2">
-      <div className="flex items-end justify-between p-4">
-        <h2 className="">Create User</h2>
-        <div className="">
+    <form className="m-10 p-10" onSubmit={handleSubmit}>
+      <li>
+        <div className="pt-20 flex justify-between">
+          <h2 className="text-lg">Create User</h2>
           <button
             type="button"
-            onClick={close}
-            className="btn-close"
+            className="close btn-lg"
+            data-dismiss="alert"
             aria-label="Close"
-          ></button>
+            onClick={close}
+          >
+            <div className="bg-red-400 p-2 rounded-full">
+              <span aria-hidden="true">&times;</span>
+            </div>
+          </button>
         </div>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <li className="flex flex-col justify-between">
-          <div className="flex flex-col justify-between">
-            <label>First Name:</label>
-            <input
-              type="text"
-              name="first_name"
-              value={formData.first_name}
-              onChange={handleInputChange}
-              className="text-black m-2 p-2 border border-black"
-            />
-          </div>
-        </li>
-        <li className="flex flex-col justify-between">
-          <label>Last Name:</label>
-          <input
-            type="text"
-            name="last_name"
-            value={formData.last_name}
-            onChange={handleInputChange}
-            className="text-black m-2 p-2 border border-black"
-          />
-        </li>
-        <li className="flex flex-col justify-between">
-          <label>Email id:</label>
-          <input
-            type="text"
-            name="email_id"
-            value={formData.email_id}
-            onChange={handleInputChange}
-            className="text-black m-2 p-2 border border-black"
-          />
-        </li>
-        <li className="flex flex-col justify-between">
-          <label>Gender :</label>
-          <input
-            type="text"
-            name="gender"
-            value={formData.gender}
-            onChange={handleInputChange}
-            className="text-black m-2 p-2 border border-black"
-          />
-        </li>
+      </li>
 
-        <li className="flex flex-col justify-between">
-          <label>Mobile Number :</label>
-          <input
-            type="number"
-            name="mobile_number"
-            value={formData.mobile_number}
-            onChange={handleInputChange}
-            maxLength={10}
-            className="text-black m-2 p-2 border border-black"
-          />
-        </li>
-        <li className="flex flex-col justify-between">
-          <label>DOB :</label>
-          <input
-            type="date"
-            name="dob"
-            value={formData.dob}
-            onChange={handleInputChange}
-            className="text-black m-2 p-2 border border-black"
-          />
-        </li>
-        <li className="flex flex-col justify-between">
-          <label>Address :</label>
+      <li className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between">
+          <label>First Name:</label>
           <input
             type="text"
-            name="address"
-            value={formData.address}
+            name="first_name"
+            value={formData.first_name}
             onChange={handleInputChange}
             className="text-black m-2 p-2 border border-black"
           />
-        </li>
-        <button className="flex justify-center items-center" type="submit">
-          <div className=" w-fit border rounded-full p-2 m-4 bg-slate-300 text-black shadow-md shadow-black hover:shadow-orange-700">
-            Create User
-          </div>
-        </button>
-      </form>
-    </div>
+        </div>
+      </li>
+      <li className="flex flex-col justify-between">
+        <label>Last Name:</label>
+        <input
+          type="text"
+          name="last_name"
+          value={formData.last_name}
+          onChange={handleInputChange}
+          className="text-black m-2 p-2 border border-black"
+        />
+      </li>
+      <li className="flex flex-col justify-between">
+        <label>Email id:</label>
+        <input
+          type="text"
+          name="email_id"
+          value={formData.email_id}
+          onChange={handleInputChange}
+          className="text-black m-2 p-2 border border-black"
+        />
+      </li>
+      <li className="flex flex-col justify-between">
+        <label>Gender :</label>
+        <input
+          type="text"
+          name="gender"
+          value={formData.gender}
+          onChange={handleInputChange}
+          className="text-black m-2 p-2 border border-black"
+        />
+      </li>
+
+      <li className="flex flex-col justify-between">
+        <label>Mobile Number :</label>
+        <input
+          type="number"
+          name="mobile_number"
+          value={formData.mobile_number}
+          onChange={handleInputChange}
+          maxLength={10}
+          className="text-black m-2 p-2 border border-black"
+        />
+      </li>
+      <li className="flex flex-col justify-between">
+        <label>DOB :</label>
+        <input
+          type="date"
+          name="dob"
+          value={formData.dob}
+          onChange={handleInputChange}
+          className="text-black m-2 p-2 border border-black"
+        />
+      </li>
+      <li className="flex flex-col justify-between">
+        <label>Address :</label>
+        <input
+          type="text"
+          name="address"
+          value={formData.address}
+          onChange={handleInputChange}
+          className="text-black m-2 p-2 border border-black"
+        />
+      </li>
+      <button className="flex justify-center items-center" type="submit">
+        <div className=" w-fit border rounded-full p-2 m-4 bg-slate-300 text-black shadow-md shadow-black hover:shadow-orange-700">
+          Create User
+        </div>
+      </button>
+    </form>
   );
 };
 

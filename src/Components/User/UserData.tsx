@@ -81,16 +81,8 @@ const UserData = () => {
         </div>
 
         {isCreateModalOpen && (
-          <div className="fixed inset-0  bg-slate-500 bg-opacity-50 z-50 overflow-auto">
-            <div
-              className={
-                darkMode
-                  ? "bg-slate-400 rounded-lg p-2 shadow-lg w-fit flex justify-center  items-center "
-                  : "bg-gray-700 rounded-lg p-2 shadow-lg w-fit flex justify-center items-center "
-              }
-            >
-              <CreateUser close={closeCreateModal} />
-            </div>
+          <div className="fixed inset-10 flex items-center justify-center p-20  bg-slate-500 bg-opacity-50 z-50 overflow-auto">
+            <CreateUser close={closeCreateModal} />
           </div>
         )}
 
@@ -165,16 +157,8 @@ const UserData = () => {
         </ul>
 
         {isEditModalOpen && selectedUser && (
-          <div className="fixed inset-0 bg-slate-500 bg-opacity-50 z-50 overflow-auto">
-            <div
-              className={
-                darkMode
-                  ? "bg-slate-400 rounded-lg p-2  w-fit shadow-lg "
-                  : "bg-gray-700 rounded-lg p-2  w-fit shadow-lg "
-              }
-            >
-              <EditUser user={selectedUser} closeModal={closeEditModal} />
-            </div>
+          <div className="fixed inset-10 flex items-center justify-center p-20  bg-slate-500 bg-opacity-50 z-50 overflow-auto">
+            <EditUser user={selectedUser} closeModal={closeEditModal} />
           </div>
         )}
       </div>
