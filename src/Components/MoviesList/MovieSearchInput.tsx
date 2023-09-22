@@ -20,21 +20,19 @@ const MovieSearchInput: React.FC<MovieSearchInputProps> = ({ onSearch }) => {
   };
 
   return (
-    <div>
+    <form className="flex p-2 m-2" onSubmit={handleSearch}>
       <input
-        type="text"
-        placeholder="Search for movies..."
+        className="form-control mr-4"
         value={query}
         onChange={handleInputChange}
-        className="placeholder-black text-black"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
       />
-      <button
-        className="text-gray-400 p-1 hover:rounded-full m-2 hover:bg-stone-700"
-        onClick={handleSearch}
-      >
+      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
         Search
       </button>
-    </div>
+    </form>
   );
 };
 
