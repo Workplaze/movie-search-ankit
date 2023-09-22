@@ -2,26 +2,17 @@ import EditUser from "./EditUser";
 import CreateUser from "./CreateUser";
 import DeleteUser from "./DeleteUser";
 import { useQuery } from "@apollo/client";
-import { ThemeContext } from "../ContextApi/ThemeContext";
+import { SET_USER_ROLE_FILTER, ThemeContext } from "../ContextApi/ThemeContext";
 import { GET_FILTER_OPTIONS, GET_USERDATA } from "../Apollo/Query/Queries";
-import React, { useContext, useState, useReducer, useEffect } from "react";
-import { userReducer, SET_USER_ROLE_FILTER } from "../UseReducer/UserReducer";
+import React, { useContext, useState } from "react";
 
 const UserData = () => {
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode, state, dispatch } = useContext(ThemeContext);
   const [selectedUser, setSelectedUser] = useState(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
-  const [state, dispatch] = useReducer(userReducer, {
-    userRoleFilter: localStorage.getItem("userRoleFilter") || "",
-  });
-
   const userRoleFilter = state.userRoleFilter;
-
-  useEffect(() => {
-    localStorage.setItem("userRoleFilter", userRoleFilter);
-  }, [userRoleFilter]);
 
   const {
     loading: filterOptionsLoading,
@@ -37,6 +28,8 @@ const UserData = () => {
   } = useQuery(GET_USERDATA, {
     variables: { role: userRoleFilter },
   });
+
+  console.log(state);
 
   if (userDataLoading || filterOptionsLoading) return <p>Loading...</p>;
 
@@ -66,7 +59,7 @@ const UserData = () => {
     refetch();
   };
 
-  const filterByUserRole = (role: any) => {
+  const filterByUserRole = (role: String) => {
     dispatch({ type: SET_USER_ROLE_FILTER, payload: role });
   };
 
