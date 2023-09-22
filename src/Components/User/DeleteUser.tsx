@@ -1,6 +1,6 @@
 import React from "react";
 import { useMutation } from "@apollo/client";
-import { DELETE_USER } from "../Apollo/Mutation/DELETE_USER";
+import { DELETE_USER } from "../Apollo/Mutation/Mutation";
 
 type DeleteUserProps = {
   userId: string;

@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
-import { EDIT_USER } from "../Apollo/Mutation/EDIT_USER";
+import { EDIT_USER } from "../Apollo/Mutation/Mutation";
 
 type EditUserProps = {
   user: {
