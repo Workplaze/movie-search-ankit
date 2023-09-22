@@ -81,11 +81,11 @@ const UserData = () => {
         </div>
 
         {isCreateModalOpen && (
-          <div className="fixed inset-10 z-50 overflow-x-auto m-10">
+          <div className="fixed inset-0  bg-slate-500 bg-opacity-50 z-50 overflow-auto">
             <div
               className={
                 darkMode
-                  ? "bg-slate-400 rounded-lg p-2 shadow-lg w-fit flex justify-center items-center "
+                  ? "bg-slate-400 rounded-lg p-2 shadow-lg w-fit flex justify-center  items-center "
                   : "bg-gray-700 rounded-lg p-2 shadow-lg w-fit flex justify-center items-center "
               }
             >
@@ -165,7 +165,7 @@ const UserData = () => {
         </ul>
 
         {isEditModalOpen && selectedUser && (
-          <div className="fixed inset-10 bg-slate-500 w-fit z-50 overflow-auto m-10">
+          <div className="fixed inset-0 bg-slate-500 bg-opacity-50 z-50 overflow-auto">
             <div
               className={
                 darkMode
