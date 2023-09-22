@@ -81,7 +81,7 @@ const UserData = () => {
         </div>
 
         {isCreateModalOpen && (
-          <div className="fixed inset-10 flex items-center justify-center p-20  bg-slate-500 bg-opacity-50 z-50 overflow-auto">
+          <div className="fixed inset-2 flex items-center justify-center p-20  bg-black bg-opacity-50 overflow-auto z-50">
             <CreateUser close={closeCreateModal} />
           </div>
         )}
@@ -157,7 +157,7 @@ const UserData = () => {
         </ul>
 
         {isEditModalOpen && selectedUser && (
-          <div className="fixed inset-10 flex items-center justify-center p-20  bg-slate-500 bg-opacity-50 z-50 overflow-auto">
+          <div className="fixed inset-2 flex items-center justify-center p-5  bg-black bg-opacity-50 overflow-auto z-50">
             <EditUser user={selectedUser} closeModal={closeEditModal} />
           </div>
         )}

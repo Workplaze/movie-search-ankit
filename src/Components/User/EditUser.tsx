@@ -43,6 +43,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, closeModal }) => {
           newData: formData,
         },
       });
+      alert("User detail Updated");
       console.log("User data updated:", data);
       closeModal();
     } catch (error) {
@@ -51,9 +52,12 @@ const EditUser: React.FC<EditUserProps> = ({ user, closeModal }) => {
   };
 
   return (
-    <form className=" p-10 m-10" onSubmit={handleSubmit}>
+    <form
+      className="p-2 h-full flex flex-col w-2/4   list-none"
+      onSubmit={handleSubmit}
+    >
       <li>
-        <div className="pt-20 flex justify-between">
+        <div className="pt-10 flex justify-between">
           <h2 className="text-lg">Edit User</h2>
           <button
             type="button"

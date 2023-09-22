@@ -39,6 +39,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
       });
       console.log("User inserted:", data.insert_user);
       close();
+      alert("New User Added");
       setFormData({
         first_name: "",
         last_name: "",
@@ -50,27 +51,29 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
       });
     } catch (error) {
       console.error("Error inserting user:", error);
+      alert(error);
     }
   };
 
   return (
-    <form className="m-10 p-10" onSubmit={handleSubmit}>
-      <li>
-        <div className="pt-20 flex justify-between">
-          <h2 className="text-lg">Create User</h2>
-          <button
-            type="button"
-            className="close btn-lg"
-            data-dismiss="alert"
-            aria-label="Close"
-            onClick={close}
-          >
-            <div className="bg-red-400 p-2 rounded-full">
-              <span aria-hidden="true">&times;</span>
-            </div>
-          </button>
-        </div>
-      </li>
+    <form
+      className=" p-2 h-full flex flex-col w-2/4   list-none"
+      onSubmit={handleSubmit}
+    >
+      <div className="pt-10 flex justify-between">
+        <h2 className="text-lg">Create User</h2>
+        <button
+          type="button"
+          className="close btn-lg"
+          data-dismiss="alert"
+          aria-label="Close"
+          onClick={close}
+        >
+          <div className="bg-red-400 p-2 rounded-full">
+            <span aria-hidden="true">&times;</span>
+          </div>
+        </button>
+      </div>
 
       <li className="flex flex-col justify-between">
         <div className="flex flex-col justify-between">
