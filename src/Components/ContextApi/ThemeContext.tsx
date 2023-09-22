@@ -30,7 +30,7 @@ export const userReducer = (
 const ThemeContextProvider = (props: any) => {
   const [darkMode, setDarkMode] = useState(false);
   const [state, dispatch] = useReducer(userReducer, {
-    userRoleFilter: "employee",
+    userRoleFilter: "",
   });
 
   return (

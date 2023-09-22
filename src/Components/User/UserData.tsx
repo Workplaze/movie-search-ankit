@@ -109,9 +109,6 @@ const UserData = () => {
             onChange={(e) => filterByUserRole(e.target.value)}
             value={userRoleFilter}
           >
-            <option className="text-black" value="">
-              all
-            </option>
             {filterOptionsData.distinct_roles.map(
               (roleOption: any, index: string) => (
                 <option
