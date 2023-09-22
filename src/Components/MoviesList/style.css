@@ -10,8 +10,9 @@
   justify-content: center;
   align-items: center;
   background-color: rgb(11, 11, 36);
-  height: 40px;
+  height: 60px;
   padding: 10px;
+  border-radius: 10px;
 
   width: fit-content;
   margin: auto;

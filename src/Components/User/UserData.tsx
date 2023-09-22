@@ -1,34 +1,43 @@
-import React, { useState } from "react";
-import { gql, useQuery } from "@apollo/client";
-import CreateUser from "./CreateUser";
 import EditUser from "./EditUser";
+import CreateUser from "./CreateUser";
 import DeleteUser from "./DeleteUser";
-
-const GET_USERDATA = gql`
-  query MyQuery {
-    user {
-      dob
-      email_id
-      address
-      first_name
-      gender
-      id
-      last_name
-      mobile_number
-    }
-  }
-`;
+import { useQuery } from "@apollo/client";
+import { SET_USER_ROLE_FILTER, ThemeContext } from "../ContextApi/ThemeContext";
+import { GET_FILTER_OPTIONS, GET_USERDATA } from "../Apollo/Query/Queries";
+import React, { useContext, useState } from "react";
 
 const UserData = () => {
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const { darkMode, state, dispatch } = useContext(ThemeContext);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
-  const { loading, error, data } = useQuery(GET_USERDATA);
+  const userRoleFilter = state.userRoleFilter;
 
-  if (loading)
-    return <p className="flex text-center pt-40 text-4xl">Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  const {
+    loading: filterOptionsLoading,
+    error: filterOptionsError,
+    data: filterOptionsData,
+  } = useQuery(GET_FILTER_OPTIONS);
+
+  const {
+    loading: userDataLoading,
+    error: userDataError,
+    data: userData,
+    refetch,
+  } = useQuery(GET_USERDATA, {
+    variables: { role: userRoleFilter },
+  });
+
+  console.log(state);
+
+  if (userDataLoading || filterOptionsLoading) return <p>Loading...</p>;
+
+  if (userDataError || filterOptionsError) {
+    return (
+      <p>Error: {userDataError?.message || filterOptionsError?.message}</p>
+    );
+  }
 
   const openCreateModal = () => {
     setIsCreateModalOpen(true);
@@ -36,6 +45,7 @@ const UserData = () => {
 
   const closeCreateModal = () => {
     setIsCreateModalOpen(false);
+    refetch();
   };
 
   const openEditModal = (user: any) => {
@@ -46,7 +56,14 @@ const UserData = () => {
   const closeEditModal = () => {
     setSelectedUser(null);
     setIsEditModalOpen(false);
+    refetch();
   };
+
+  const filterByUserRole = (role: String) => {
+    dispatch({ type: SET_USER_ROLE_FILTER, payload: role });
+  };
+
+  const userArray = userData?.user || [];
 
   return (
     <div className="p-10 m-5">
@@ -54,7 +71,6 @@ const UserData = () => {
         <h2 className="font-extrabold text-2xl text-gray-800 text-center bg-blue-300 p-4">
           User Information
         </h2>
-
         <div className="flex justify-center mt-4">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
@@ -65,41 +81,77 @@ const UserData = () => {
         </div>
 
         {isCreateModalOpen && (
-          <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="absolute  bg-gray-900"></div>
-            <div className="bg-slate-400 rounded-lg p-8 shadow-lg z-50">
-              <span
-                className="absolute top-20 right-10 text-3xl m-2 text-gray-200 rounded p-2 on hover:bg-red-400 bg-black cursor-pointer"
-                onClick={closeCreateModal}
-              >
-                &times;
-              </span>
-              <CreateUser />
+          <div className="fixed inset-0  bg-slate-500 bg-opacity-50 z-50 overflow-auto">
+            <div
+              className={
+                darkMode
+                  ? "bg-slate-400 rounded-lg p-2 shadow-lg w-fit flex justify-center  items-center "
+                  : "bg-gray-700 rounded-lg p-2 shadow-lg w-fit flex justify-center items-center "
+              }
+            >
+              <CreateUser close={closeCreateModal} />
             </div>
           </div>
         )}
 
+        <div className="mt-4">
+          <label
+            className={
+              darkMode
+                ? "text-dark p-2  font-semibold"
+                : "text-yellow-50 p-2  font-semibold"
+            }
+          >
+            Filter by UserRole:
+          </label>
+          <select
+            className="text-black p-2 border rounded-md"
+            onChange={(e) => filterByUserRole(e.target.value)}
+            value={userRoleFilter}
+          >
+            {filterOptionsData.distinct_roles.map(
+              (roleOption: any, index: string) => (
+                <option
+                  key={index}
+                  className="text-black"
+                  value={roleOption.role}
+                >
+                  {roleOption.role}
+                </option>
+              )
+            )}
+          </select>
+        </div>
+
         <ul className="mt-8">
-          {data.user.map((userData: any) => (
+          {userArray.map((userData: any) => (
             <li
               key={userData.id}
-              className="bg-gray-100 p-4 my-4 rounded-lg shadow-lg"
+              className="bg-gray-100 p-4 my-4 rounded-lg shadow-lg sm:flex sm:flex-row"
             >
-              <p className="text-lg inline p-2 m-2 text-gray-800">
-                <span className="font-bold">First Name:</span>{" "}
-                {userData.first_name}
-              </p>
-              <p className="text-lg inline p-2 m-2 text-gray-800">
-                <span className="font-bold">Last Name:</span>{" "}
-                {userData.last_name}
-              </p>
-              <p className="text-lg inline p-2 m-2 text-gray-800">
-                <span className="font-bold">Email:</span> {userData.email_id}
-              </p>
-              <p className="text-lg inline p-2 m-2 text-gray-800">
-                <span className="font-bold">Gender:</span> {userData.gender}
-              </p>
-              <div className="flex mt-4">
+              <div>
+                <p className="text-lg inline p-2 m-2 text-gray-800">
+                  <span className="font-bold">First Name:</span>{" "}
+                  {userData.first_name}
+                </p>
+              </div>
+              <div>
+                <p className="text-lg inline p-2 m-2 text-gray-800">
+                  <span className="font-bold">Last Name:</span>{" "}
+                  {userData.last_name}
+                </p>
+              </div>
+              <div>
+                <p className="text-lg inline p-2 m-2 text-gray-800">
+                  <span className="font-bold">Email:</span> {userData.email_id}
+                </p>
+              </div>
+              <div>
+                <p className="text-lg inline p-2 m-2 text-gray-800">
+                  <span className="font-bold">Gender:</span> {userData.gender}
+                </p>
+              </div>
+              <div className="flex ">
                 <button
                   className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-full mr-4"
                   onClick={() => openEditModal(userData)}
@@ -113,8 +165,14 @@ const UserData = () => {
         </ul>
 
         {isEditModalOpen && selectedUser && (
-          <div className="fixed inset-0 flex items-center overflow-scroll justify-center z-50">
-            <div className="bg-white rounded-lg p-2 shadow-lg z-50 ">
+          <div className="fixed inset-0 bg-slate-500 bg-opacity-50 z-50 overflow-auto">
+            <div
+              className={
+                darkMode
+                  ? "bg-slate-400 rounded-lg p-2  w-fit shadow-lg "
+                  : "bg-gray-700 rounded-lg p-2  w-fit shadow-lg "
+              }
+            >
               <EditUser user={selectedUser} closeModal={closeEditModal} />
             </div>
           </div>

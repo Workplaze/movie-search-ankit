@@ -15,6 +15,8 @@
   align-items: center;
 }
 
+
+
 .nav-links ul {
   list-style-type: none;
   margin: 0;
@@ -29,12 +31,12 @@
 
 .nav-links li {
   background-color: transparent;
-  padding: 10px 15px;
+  padding: 5px 10px;
   border-radius: 10px;
 }
 
 .nav-links li:hover {
-  background-color: black;
+  text-decoration: underline;
 }
 
 .nav-links a {
@@ -46,26 +48,29 @@
 @media screen and (max-width: 768px) {
   .nav-links {
     display: none;
-    flex-direction: column;
+    flex-direction: row;
     position: absolute;
-    top: 60px;
-    left: 0;
+    padding: 10px;
     background-color: #333;
-    width: 100%;
+    width: fit-content;
     
   }
-
-  .header.active {
+  .header {
     height: auto;
   }
 
+  .header.active {
+    display: block;
+    color: #fff;
+  }
+
   .nav.active .nav-links {
-    display: flex;
+    display: inline;
     transform: translateY(0);
   }
 
   .nav-toggle.active {
-    background-color: #333;
+    background-color: #485d5f;
   }
   .nav-links.active {
     display: block;

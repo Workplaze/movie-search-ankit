@@ -8,11 +8,13 @@ import Client from "./Components/Apollo/Client";
 import HomePage from "./Components/HomePage";
 
 const App = () => {
-  const theme = useContext(ThemeContext);
+  const { darkMode } = useContext(ThemeContext);
 
   return (
     <div
-      style={{ backgroundColor: theme.primary.main, color: theme.primary.text }}
+      className={
+        darkMode ? "bg-slate-100 text-black" : "bg-gray-800 text-white"
+      }
     >
       <ApolloProvider client={Client}>
         <Routes>
