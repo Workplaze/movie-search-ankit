@@ -48,11 +48,12 @@
 @media screen and (max-width: 768px) {
   .nav-links {
     display: none;
-    flex-direction: row;
+    flex-direction: column;
     position: absolute;
     padding: 10px;
-    background-color: #333;
+    background-color:rgba(50, 21, 21, 0.39);
     width: fit-content;
+    margin: 20px;
     
   }
   .header {
@@ -73,7 +74,9 @@
     background-color: #485d5f;
   }
   .nav-links.active {
-    display: block;
+    display: flex;
+    justify-items: baseline;
+    align-items: center;
   }
 
   .nav-toggle {
@@ -82,5 +85,9 @@
     background-color: #333;
     font-size: 24px;
     cursor: pointer;
+  }
+  .nav-toggle.active {
+    margin-top: 80px;
+    margin-right: 20px;
   }
 }

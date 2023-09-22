@@ -29,7 +29,7 @@ const Header = () => {
           </div>
         </Link>
 
-        <div className="xl:hidden" onClick={toggleNav}>
+        <div className="xl:hidden lg:hidden md:hidden" onClick={toggleNav}>
           <div className={`nav-toggle ${navActive ? "active" : ""}`}>☰</div>
         </div>
         <div className={`nav-links ${navActive ? "active" : ""}`}>
@@ -37,9 +37,7 @@ const Header = () => {
             <div>
               <li>
                 <Link
-                  className={`nav-links ${
-                    darkMode ? "text-blue-300" : "text-white"
-                  }`}
+                  className={` ${darkMode ? "text-blue-300" : "text-white"}`}
                   to="/"
                 >
                   Home
@@ -49,9 +47,7 @@ const Header = () => {
             <div>
               <li>
                 <Link
-                  className={`nav-links ${
-                    darkMode ? "text-blue-300" : "text-white"
-                  }`}
+                  className={` ${darkMode ? "text-blue-300" : "text-white"}`}
                   to="/"
                 >
                   3D
@@ -61,9 +57,7 @@ const Header = () => {
             <div>
               <li>
                 <Link
-                  className={`nav-links ${
-                    darkMode ? "text-blue-300" : "text-white"
-                  }`}
+                  className={` ${darkMode ? "text-blue-300" : "text-white"}`}
                   to="/"
                 >
                   4K
@@ -73,9 +67,7 @@ const Header = () => {
             <div>
               <li>
                 <Link
-                  className={`nav-links ${
-                    darkMode ? "text-blue-300" : "text-white"
-                  }`}
+                  className={`${darkMode ? "text-blue-300" : "text-white"}`}
                   to="/userdata"
                 >
                   UserData
@@ -84,14 +76,12 @@ const Header = () => {
             </div>
             <div>
               <li>
-                <a
-                  className={`nav-links ${
-                    darkMode ? "text-blue-300" : "text-white"
-                  }`}
-                  href="/"
+                <Link
+                  className={`${darkMode ? "text-blue-300" : "text-white"}`}
+                  to="/"
                 >
                   Browse Movies
-                </a>
+                </Link>
               </li>
             </div>
             <li>
