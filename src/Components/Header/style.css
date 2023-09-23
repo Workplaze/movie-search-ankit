@@ -54,10 +54,13 @@
     background-color:rgba(50, 21, 21, 0.39);
     width: fit-content;
     margin: 20px;
+    margin-bottom: 200px;
+
     
   }
   .header {
     height: auto;
+    margin-bottom: 200px;
   }
 
   .header.active {
