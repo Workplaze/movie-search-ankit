@@ -25,7 +25,12 @@ const DeleteUser: React.FC<DeleteUserProps> = ({ userId, refetchUserData }) => {
 
   return (
     <button onClick={handleDeleteUser} className="text-red-500">
-      Delete
+      <img
+        width="30"
+        height="35"
+        src="https://img.icons8.com/plasticine/100/filled-trash.png"
+        alt="filled-trash"
+      />
     </button>
   );
 };

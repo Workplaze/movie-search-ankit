@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import ThemeToggleButton from "../ThemeToggleButton";
@@ -6,22 +6,12 @@ import { ThemeContext } from "../ContextApi/ThemeContext";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 
 const Header = () => {
-  const [navActive, setNavActive] = useState(false);
   const { darkMode } = useContext(ThemeContext);
 
-  const toggleNav = () => {
-    setNavActive(!navActive);
-  };
-
   return (
-    <div
-      className={`header ${navActive ? "active" : ""} ${
-        darkMode ? "dark-mode" : "light-mode"
-      }`}
-    >
+    <div className={`header ${darkMode ? "dark-mode" : "light-mode"}`}>
       <Navbar bg="dark" expand="lg" variant="dark" data-bs-theme="dark">
         <Container>
           <Navbar.Brand href="#home">

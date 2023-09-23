@@ -119,38 +119,46 @@ const UserData = () => {
           {userArray.map((userData: any) => (
             <li
               key={userData.id}
-              className="bg-gray-100 p-4 my-4 rounded-lg shadow-lg sm:flex sm:flex-row"
+              className="bg-gray-100 p-4 my-4 rounded-lg shadow-lg justify-around sm:flex sm:flex-row"
             >
-              <div>
-                <p className="text-lg inline p-2 m-2 text-gray-800">
-                  <span className="font-bold">First Name:</span>{" "}
-                  {userData.first_name}
-                </p>
+              <div className="sm:flex">
+                <div>
+                  <p className="text-lg inline p-2 m-2 text-gray-800">
+                    <span className="font-bold">First Name:</span>{" "}
+                    {userData.first_name}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-lg inline p-2 m-2 text-gray-800">
+                    <span className="font-bold">Last Name:</span>{" "}
+                    {userData.last_name}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-lg inline p-2 m-2 text-gray-800">
+                    <span className="font-bold">Email:</span>{" "}
+                    {userData.email_id}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-lg inline p-2 m-2 text-gray-800">
+                    <span className="font-bold">Gender:</span> {userData.gender}
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-lg inline p-2 m-2 text-gray-800">
-                  <span className="font-bold">Last Name:</span>{" "}
-                  {userData.last_name}
-                </p>
-              </div>
-              <div>
-                <p className="text-lg inline p-2 m-2 text-gray-800">
-                  <span className="font-bold">Email:</span> {userData.email_id}
-                </p>
-              </div>
-              <div>
-                <p className="text-lg inline p-2 m-2 text-gray-800">
-                  <span className="font-bold">Gender:</span> {userData.gender}
-                </p>
-              </div>
-              <div className="flex ">
+              <div className="justify-ends items-end ">
                 <button
-                  className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-full mr-4"
+                  className="bg-slate-800 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded-full mr-2"
                   onClick={() => openEditModal(userData)}
                 >
-                  Edit
+                  <img
+                    width="30"
+                    height="35"
+                    src="https://img.icons8.com/plasticine/100/create-new.png"
+                    alt="create-new"
+                  />
                 </button>
-                <DeleteUser userId={userData.id} refetchUserData={() => {}} />
+                <DeleteUser userId={userData.id} refetchUserData={refetch} />
               </div>
             </li>
           ))}
