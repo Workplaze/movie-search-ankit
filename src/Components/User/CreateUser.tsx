@@ -1,14 +1,12 @@
 // CreateUser.js
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "tailwindcss/tailwind.css";
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../Apollo/Mutation/Mutation";
+import { ThemeContext } from "../ContextApi/ThemeContext";
 
-type CreateUserProps = {
-  close: () => void;
-};
-
-const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
+const CreateUser = () => {
+  const { darkMode } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -38,7 +36,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
         },
       });
       console.log("User inserted:", data.insert_user);
-      close();
+
       alert("New User Added");
       setFormData({
         first_name: "",
@@ -57,22 +55,13 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
 
   return (
     <form
-      className=" p-2 h-full flex flex-col w-2/4   list-none"
+      className={` p-5 flex flex-col  ${
+        darkMode ? "bg-white text-black" : "bg-slate-600 text-white"
+      } rounded-md shadow-sm shadow-yellow-200 `}
       onSubmit={handleSubmit}
     >
-      <div className="pt-10 flex justify-between">
+      <div className="pt-10 h-full flex justify-between">
         <h2 className="text-lg">Create User</h2>
-        <button
-          type="button"
-          className="close btn-lg"
-          data-dismiss="alert"
-          aria-label="Close"
-          onClick={close}
-        >
-          <div className="bg-red-400 p-2 rounded-full">
-            <span aria-hidden="true">&times;</span>
-          </div>
-        </button>
       </div>
 
       <li className="flex flex-col justify-between">

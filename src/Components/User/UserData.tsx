@@ -1,10 +1,16 @@
-import EditUser from "./EditUser";
-import CreateUser from "./CreateUser";
-import DeleteUser from "./DeleteUser";
+import React, { useContext, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { SET_USER_ROLE_FILTER, ThemeContext } from "../ContextApi/ThemeContext";
-import { GET_FILTER_OPTIONS, GET_USERDATA } from "../Apollo/Query/Queries";
-import React, { useContext, useState } from "react";
+import {
+  GET_FILTER_OPTIONS,
+  GET_FITERED_USERDATA,
+  GET_USERDATA,
+} from "../Apollo/Query/Queries";
+import CreateUser from "./CreateUser";
+import DeleteUser from "./DeleteUser";
+import EditUser from "./EditUser";
+import "react-responsive-modal/styles.css";
+import { Modal } from "react-responsive-modal";
 
 const UserData = () => {
   const { darkMode, state, dispatch } = useContext(ThemeContext);
@@ -25,17 +31,27 @@ const UserData = () => {
     error: userDataError,
     data: userData,
     refetch,
-  } = useQuery(GET_USERDATA, {
+  } = useQuery(GET_USERDATA);
+
+  const {
+    loading: userFilteredDataLoading,
+    error: userFilteredDataError,
+    data: userFilteredData,
+  } = useQuery(GET_FITERED_USERDATA, {
     variables: { role: userRoleFilter },
   });
 
-  console.log(state);
+  if (userDataLoading || filterOptionsLoading || userFilteredDataLoading)
+    return <p>Loading...</p>;
 
-  if (userDataLoading || filterOptionsLoading) return <p>Loading...</p>;
-
-  if (userDataError || filterOptionsError) {
+  if (userDataError || filterOptionsError || userFilteredDataLoading) {
     return (
-      <p>Error: {userDataError?.message || filterOptionsError?.message}</p>
+      <p>
+        Error:
+        {userDataError?.message ||
+          filterOptionsError?.message ||
+          userFilteredDataError?.message}
+      </p>
     );
   }
 
@@ -65,15 +81,18 @@ const UserData = () => {
 
   const userArray = userData?.user || [];
 
+  const filteredUserArray =
+    userRoleFilter !== "" ? userFilteredData?.user || [] : userArray;
+
   return (
-    <div className="p-10 m-5">
+    <div className="p-4 mt-20">
       <div className="mt-8">
-        <h2 className="font-extrabold text-2xl text-gray-800 text-center bg-blue-300 p-4">
+        <h2 className="font-extrabold text-2xl text-gray-800 text-center bg-blue-300 p-2">
           User Information
         </h2>
         <div className="flex justify-center mt-4">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-full"
             onClick={openCreateModal}
           >
             Create User
@@ -81,9 +100,15 @@ const UserData = () => {
         </div>
 
         {isCreateModalOpen && (
-          <div className="fixed inset-2 flex items-center justify-center p-20  bg-black bg-opacity-50 overflow-auto z-50">
-            <CreateUser close={closeCreateModal} />
+          <div>
+            <Modal open={isCreateModalOpen} onClose={closeCreateModal} center>
+              <CreateUser />
+            </Modal>
           </div>
+
+          // <div className="fixed inset-2 flex items-center justify-center p-2  bg-black bg-opacity-50 overflow-auto z-50">
+          //
+          // </div>
         )}
 
         <div className="mt-4">
@@ -101,6 +126,7 @@ const UserData = () => {
             onChange={(e) => filterByUserRole(e.target.value)}
             value={userRoleFilter}
           >
+            <option value="">All</option>
             {filterOptionsData.distinct_roles.map(
               (roleOption: any, index: string) => (
                 <option
@@ -116,49 +142,59 @@ const UserData = () => {
         </div>
 
         <ul className="mt-8">
-          {userArray.map((userData: any) => (
+          {filteredUserArray.map((userData: any) => (
             <li
               key={userData.id}
-              className="bg-gray-100 p-4 my-4 rounded-lg shadow-lg sm:flex sm:flex-row"
+              className="bg-gray-100 p-4 my-4 rounded-lg shadow-lg justify-around sm:flex sm:flex-row"
             >
-              <div>
-                <p className="text-lg inline p-2 m-2 text-gray-800">
-                  <span className="font-bold">First Name:</span>{" "}
-                  {userData.first_name}
-                </p>
+              <div className="sm:flex">
+                <div>
+                  <p className="text-lg inline p-2 m-2 text-gray-800">
+                    <span className="font-bold">First Name:</span>{" "}
+                    {userData.first_name}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-lg inline p-2 m-2 text-gray-800">
+                    <span className="font-bold">Last Name:</span>{" "}
+                    {userData.last_name}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-lg inline p-2 m-2 text-gray-800">
+                    <span className="font-bold">Email:</span>{" "}
+                    {userData.email_id}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-lg inline p-2 m-2 text-gray-800">
+                    <span className="font-bold">Gender:</span> {userData.gender}
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-lg inline p-2 m-2 text-gray-800">
-                  <span className="font-bold">Last Name:</span>{" "}
-                  {userData.last_name}
-                </p>
-              </div>
-              <div>
-                <p className="text-lg inline p-2 m-2 text-gray-800">
-                  <span className="font-bold">Email:</span> {userData.email_id}
-                </p>
-              </div>
-              <div>
-                <p className="text-lg inline p-2 m-2 text-gray-800">
-                  <span className="font-bold">Gender:</span> {userData.gender}
-                </p>
-              </div>
-              <div className="flex ">
+              <div className="justify-ends items-end ">
                 <button
-                  className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-full mr-4"
+                  className="bg-slate-800 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded-full mr-2"
                   onClick={() => openEditModal(userData)}
                 >
-                  Edit
+                  <img
+                    width="30"
+                    height="35"
+                    src="https://img.icons8.com/plasticine/100/create-new.png"
+                    alt="create-new"
+                  />
                 </button>
-                <DeleteUser userId={userData.id} refetchUserData={() => {}} />
+                <DeleteUser userId={userData.id} refetchUserData={refetch} />
               </div>
             </li>
           ))}
         </ul>
-
+        <div className="bg-black"></div>
         {isEditModalOpen && selectedUser && (
-          <div className="fixed inset-2 flex items-center justify-center p-5  bg-black bg-opacity-50 overflow-auto z-50">
-            <EditUser user={selectedUser} closeModal={closeEditModal} />
+          <div>
+            <Modal open={isEditModalOpen} onClose={closeEditModal} center>
+              <EditUser user={selectedUser} />
+            </Modal>
           </div>
         )}
       </div>

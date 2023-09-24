@@ -17,11 +17,11 @@ const App = () => {
       }
     >
       <ApolloProvider client={Client}>
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/userdata" element={<UserData />} />
         </Routes>
-        <Header />
       </ApolloProvider>
     </div>
   );

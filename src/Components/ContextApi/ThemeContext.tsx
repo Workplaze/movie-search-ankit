@@ -29,8 +29,11 @@ export const userReducer = (
 
 const ThemeContextProvider = (props: any) => {
   const [darkMode, setDarkMode] = useState(false);
+
+  const initialUserRoleFilter = "DefaultUserRole";
+
   const [state, dispatch] = useReducer(userReducer, {
-    userRoleFilter: "employee",
+    userRoleFilter: initialUserRoleFilter,
   });
 
   return (
