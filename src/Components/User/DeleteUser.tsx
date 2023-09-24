@@ -15,6 +15,7 @@ const DeleteUser: React.FC<DeleteUserProps> = ({ userId, refetchUserData }) => {
       const { data } = await deleteUser({
         variables: { id: userId },
       });
+      alert("User deleted");
       console.log("User deleted:", data);
       refetchUserData();
     } catch (error) {

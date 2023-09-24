@@ -53,7 +53,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, closeModal }) => {
 
   return (
     <form
-      className="p-2 h-full flex flex-col w-2/4   list-none"
+      className=" h-full flex flex-col w-3/4 shadow shadow-white   list-none"
       onSubmit={handleSubmit}
     >
       <li>

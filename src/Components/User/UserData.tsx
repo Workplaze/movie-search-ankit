@@ -1,10 +1,10 @@
-import EditUser from "./EditUser";
-import CreateUser from "./CreateUser";
-import DeleteUser from "./DeleteUser";
+import React, { useContext, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { SET_USER_ROLE_FILTER, ThemeContext } from "../ContextApi/ThemeContext";
 import { GET_FILTER_OPTIONS, GET_USERDATA } from "../Apollo/Query/Queries";
-import React, { useContext, useState } from "react";
+import CreateUser from "./CreateUser";
+import DeleteUser from "./DeleteUser";
+import EditUser from "./EditUser";
 
 const UserData = () => {
   const { darkMode, state, dispatch } = useContext(ThemeContext);
@@ -28,8 +28,6 @@ const UserData = () => {
   } = useQuery(GET_USERDATA, {
     variables: { role: userRoleFilter },
   });
-
-  console.log(state);
 
   if (userDataLoading || filterOptionsLoading) return <p>Loading...</p>;
 
@@ -66,14 +64,14 @@ const UserData = () => {
   const userArray = userData?.user || [];
 
   return (
-    <div className="p-10 m-5">
+    <div className="p-4 mt-20">
       <div className="mt-8">
-        <h2 className="font-extrabold text-2xl text-gray-800 text-center bg-blue-300 p-4">
+        <h2 className="font-extrabold text-2xl text-gray-800 text-center bg-blue-300 p-2">
           User Information
         </h2>
         <div className="flex justify-center mt-4">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-full"
             onClick={openCreateModal}
           >
             Create User
@@ -81,7 +79,7 @@ const UserData = () => {
         </div>
 
         {isCreateModalOpen && (
-          <div className="fixed inset-2 flex items-center justify-center p-20  bg-black bg-opacity-50 overflow-auto z-50">
+          <div className="fixed inset-2 flex items-center justify-center p-2  bg-black bg-opacity-50 overflow-auto z-50">
             <CreateUser close={closeCreateModal} />
           </div>
         )}
@@ -165,7 +163,7 @@ const UserData = () => {
         </ul>
 
         {isEditModalOpen && selectedUser && (
-          <div className="fixed inset-2 flex items-center justify-center p-5  bg-black bg-opacity-50 overflow-auto z-50">
+          <div className="fixed inset-2 flex items-center justify-center p-2  bg-black bg-opacity-50 overflow-auto z-50">
             <EditUser user={selectedUser} closeModal={closeEditModal} />
           </div>
         )}
