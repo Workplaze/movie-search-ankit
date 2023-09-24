@@ -11,7 +11,8 @@ const MovieSearchInput: React.FC<MovieSearchInputProps> = ({ onSearch }) => {
     setQuery(e.target.value);
   };
 
-  const handleSearch = () => {
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
     if (query.length > 2) {
       onSearch(query);
     } else {
