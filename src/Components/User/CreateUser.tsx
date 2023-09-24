@@ -57,10 +57,10 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
 
   return (
     <form
-      className=" p-2 h-full flex flex-col w-2/4   list-none"
+      className=" p-5 flex flex-col  w-2/4 bg-white rounded-md shadow-sm shadow-yellow-200 "
       onSubmit={handleSubmit}
     >
-      <div className="pt-10 flex justify-between">
+      <div className="pt-10 h-full flex justify-between">
         <h2 className="text-lg">Create User</h2>
         <button
           type="button"

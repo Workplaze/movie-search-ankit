@@ -1,7 +1,11 @@
 import React, { useContext, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { SET_USER_ROLE_FILTER, ThemeContext } from "../ContextApi/ThemeContext";
-import { GET_FILTER_OPTIONS, GET_USERDATA } from "../Apollo/Query/Queries";
+import {
+  GET_FILTER_OPTIONS,
+  GET_FITERED_USERDATA,
+  GET_USERDATA,
+} from "../Apollo/Query/Queries";
 import CreateUser from "./CreateUser";
 import DeleteUser from "./DeleteUser";
 import EditUser from "./EditUser";
@@ -25,15 +29,27 @@ const UserData = () => {
     error: userDataError,
     data: userData,
     refetch,
-  } = useQuery(GET_USERDATA, {
+  } = useQuery(GET_USERDATA);
+
+  const {
+    loading: userFilteredDataLoading,
+    error: userFilteredDataError,
+    data: userFilteredData,
+  } = useQuery(GET_FITERED_USERDATA, {
     variables: { role: userRoleFilter },
   });
 
-  if (userDataLoading || filterOptionsLoading) return <p>Loading...</p>;
+  if (userDataLoading || filterOptionsLoading || userFilteredDataLoading)
+    return <p>Loading...</p>;
 
-  if (userDataError || filterOptionsError) {
+  if (userDataError || filterOptionsError || userFilteredDataLoading) {
     return (
-      <p>Error: {userDataError?.message || filterOptionsError?.message}</p>
+      <p>
+        Error:{" "}
+        {userDataError?.message ||
+          filterOptionsError?.message ||
+          userFilteredDataError?.message}
+      </p>
     );
   }
 
@@ -62,6 +78,9 @@ const UserData = () => {
   };
 
   const userArray = userData?.user || [];
+
+  const filteredUserArray =
+    userRoleFilter !== "" ? userFilteredData?.user || [] : userArray;
 
   return (
     <div className="p-4 mt-20">
@@ -99,6 +118,7 @@ const UserData = () => {
             onChange={(e) => filterByUserRole(e.target.value)}
             value={userRoleFilter}
           >
+            <option value="">All</option>
             {filterOptionsData.distinct_roles.map(
               (roleOption: any, index: string) => (
                 <option
@@ -114,7 +134,7 @@ const UserData = () => {
         </div>
 
         <ul className="mt-8">
-          {userArray.map((userData: any) => (
+          {filteredUserArray.map((userData: any) => (
             <li
               key={userData.id}
               className="bg-gray-100 p-4 my-4 rounded-lg shadow-lg justify-around sm:flex sm:flex-row"

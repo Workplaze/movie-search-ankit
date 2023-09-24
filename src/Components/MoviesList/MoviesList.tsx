@@ -21,7 +21,7 @@ const MoviesList: React.FC<MovieListProps> = ({ movies }) => {
             <Card style={{ width: "100%", margin: 10 }}>
               <Card.Img
                 variant="top"
-                className="sm:w-20 sm:h-25"
+                className="xl:w-20 xl:h-25 md:w-20 md:w-25"
                 src={movie.Poster}
               />
               <Card.Body>
