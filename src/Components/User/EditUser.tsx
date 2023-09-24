@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { EDIT_USER } from "../Apollo/Mutation/Mutation";
+import { ThemeContext } from "../ContextApi/ThemeContext";
 
 type EditUserProps = {
   user: {
@@ -13,10 +14,11 @@ type EditUserProps = {
     dob: number;
     address: string;
   };
-  closeModal: () => void;
 };
 
-const EditUser: React.FC<EditUserProps> = ({ user, closeModal }) => {
+const EditUser: React.FC<EditUserProps> = ({ user }) => {
+  const { darkMode } = useContext(ThemeContext);
+
   const [formData, setFormData] = useState({
     first_name: user.first_name || "",
     last_name: user.last_name || "",
@@ -45,7 +47,6 @@ const EditUser: React.FC<EditUserProps> = ({ user, closeModal }) => {
       });
       alert("User detail Updated");
       console.log("User data updated:", data);
-      closeModal();
     } catch (error) {
       console.error("Error updating user data:", error);
     }
@@ -53,25 +54,14 @@ const EditUser: React.FC<EditUserProps> = ({ user, closeModal }) => {
 
   return (
     <form
-      className=" h-full flex flex-col w-3/4 shadow shadow-white   list-none"
+      className={` p-5 flex flex-col  ${
+        darkMode ? "bg-white text-black" : "bg-slate-600 text-white"
+      } rounded-md shadow-sm shadow-yellow-200 `}
       onSubmit={handleSubmit}
     >
-      <li>
-        <div className="pt-10 flex justify-between">
-          <h2 className="text-lg">Edit User</h2>
-          <button
-            type="button"
-            className="close btn-lg"
-            data-dismiss="alert"
-            aria-label="Close"
-            onClick={closeModal}
-          >
-            <div className="bg-red-400 p-2 rounded-full">
-              <span aria-hidden="true">&times;</span>
-            </div>
-          </button>
-        </div>
-      </li>
+      <div className="pt-10 flex justify-between">
+        <h2 className="text-lg">Edit User</h2>
+      </div>
 
       <li className="flex flex-col justify-between p-2">
         <label>First Name:</label>

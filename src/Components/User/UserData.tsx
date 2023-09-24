@@ -9,6 +9,8 @@ import {
 import CreateUser from "./CreateUser";
 import DeleteUser from "./DeleteUser";
 import EditUser from "./EditUser";
+import "react-responsive-modal/styles.css";
+import { Modal } from "react-responsive-modal";
 
 const UserData = () => {
   const { darkMode, state, dispatch } = useContext(ThemeContext);
@@ -45,7 +47,7 @@ const UserData = () => {
   if (userDataError || filterOptionsError || userFilteredDataLoading) {
     return (
       <p>
-        Error:{" "}
+        Error:
         {userDataError?.message ||
           filterOptionsError?.message ||
           userFilteredDataError?.message}
@@ -98,9 +100,15 @@ const UserData = () => {
         </div>
 
         {isCreateModalOpen && (
-          <div className="fixed inset-2 flex items-center justify-center p-2  bg-black bg-opacity-50 overflow-auto z-50">
-            <CreateUser close={closeCreateModal} />
+          <div>
+            <Modal open={isCreateModalOpen} onClose={closeCreateModal} center>
+              <CreateUser />
+            </Modal>
           </div>
+
+          // <div className="fixed inset-2 flex items-center justify-center p-2  bg-black bg-opacity-50 overflow-auto z-50">
+          //
+          // </div>
         )}
 
         <div className="mt-4">
@@ -181,10 +189,12 @@ const UserData = () => {
             </li>
           ))}
         </ul>
-
+        <div className="bg-black"></div>
         {isEditModalOpen && selectedUser && (
-          <div className="fixed inset-2 flex items-center justify-center p-2  bg-black bg-opacity-50 overflow-auto z-50">
-            <EditUser user={selectedUser} closeModal={closeEditModal} />
+          <div>
+            <Modal open={isEditModalOpen} onClose={closeEditModal} center>
+              <EditUser user={selectedUser} />
+            </Modal>
           </div>
         )}
       </div>
