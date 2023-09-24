@@ -1,11 +1,14 @@
-// CreateUser.js
 import React, { useContext, useState } from "react";
 import "tailwindcss/tailwind.css";
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../Apollo/Mutation/Mutation";
 import { ThemeContext } from "../ContextApi/ThemeContext";
 
-const CreateUser = () => {
+type CreateUserProps = {
+  close: () => void;
+};
+
+const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
   const { darkMode } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
     first_name: "",
@@ -38,6 +41,7 @@ const CreateUser = () => {
       console.log("User inserted:", data.insert_user);
 
       alert("New User Added");
+      close();
       setFormData({
         first_name: "",
         last_name: "",

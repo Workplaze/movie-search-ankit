@@ -102,13 +102,9 @@ const UserData = () => {
         {isCreateModalOpen && (
           <div>
             <Modal open={isCreateModalOpen} onClose={closeCreateModal} center>
-              <CreateUser />
+              <CreateUser close={closeCreateModal} />
             </Modal>
           </div>
-
-          // <div className="fixed inset-2 flex items-center justify-center p-2  bg-black bg-opacity-50 overflow-auto z-50">
-          //
-          // </div>
         )}
 
         <div className="mt-4">
