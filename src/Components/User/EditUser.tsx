@@ -14,9 +14,10 @@ type EditUserProps = {
     dob: number;
     address: string;
   };
+  Close: () => void;
 };
 
-const EditUser: React.FC<EditUserProps> = ({ user }) => {
+const EditUser: React.FC<EditUserProps> = ({ user, Close }) => {
   const { darkMode } = useContext(ThemeContext);
 
   const [formData, setFormData] = useState({
@@ -46,6 +47,7 @@ const EditUser: React.FC<EditUserProps> = ({ user }) => {
         },
       });
       alert("User detail Updated");
+      Close();
       console.log("User data updated:", data);
     } catch (error) {
       console.error("Error updating user data:", error);
@@ -54,12 +56,12 @@ const EditUser: React.FC<EditUserProps> = ({ user }) => {
 
   return (
     <form
-      className={` p-5 flex flex-col  ${
+      className={` flex flex-col  ${
         darkMode ? "bg-white text-black" : "bg-slate-600 text-white"
       } rounded-md shadow-sm shadow-yellow-200 `}
       onSubmit={handleSubmit}
     >
-      <div className="pt-10 flex justify-between">
+      <div className="pt-2 flex justify-between">
         <h2 className="text-lg">Edit User</h2>
       </div>
 

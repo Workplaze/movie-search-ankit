@@ -1,16 +1,16 @@
-import React, { useContext, useState } from "react";
-import { useQuery } from "@apollo/client";
-import { SET_USER_ROLE_FILTER, ThemeContext } from "../ContextApi/ThemeContext";
 import {
   GET_FILTER_OPTIONS,
   GET_FITERED_USERDATA,
   GET_USERDATA,
 } from "../Apollo/Query/Queries";
+import EditUser from "./EditUser";
 import CreateUser from "./CreateUser";
 import DeleteUser from "./DeleteUser";
-import EditUser from "./EditUser";
+import { useQuery } from "@apollo/client";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
+import React, { useContext, useState } from "react";
+import { SET_USER_ROLE_FILTER, ThemeContext } from "../ContextApi/ThemeContext";
 
 const UserData = () => {
   const { darkMode, state, dispatch } = useContext(ThemeContext);
@@ -189,7 +189,7 @@ const UserData = () => {
         {isEditModalOpen && selectedUser && (
           <div>
             <Modal open={isEditModalOpen} onClose={closeEditModal} center>
-              <EditUser user={selectedUser} />
+              <EditUser user={selectedUser} Close={closeEditModal} />
             </Modal>
           </div>
         )}

@@ -59,12 +59,12 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
 
   return (
     <form
-      className={` p-5 flex flex-col  ${
+      className={`p-2 flex flex-col  ${
         darkMode ? "bg-white text-black" : "bg-slate-600 text-white"
       } rounded-md shadow-sm shadow-yellow-200 `}
       onSubmit={handleSubmit}
     >
-      <div className="pt-10 h-full flex justify-between">
+      <div className=" h-full flex justify-between">
         <h2 className="text-lg">Create User</h2>
       </div>
 
