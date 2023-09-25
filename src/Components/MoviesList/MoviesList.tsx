@@ -12,7 +12,6 @@ type MovieListProps = {
 };
 
 const MoviesList: React.FC<MovieListProps> = ({ movies }) => {
-  console.log(movies);
   return (
     <Container>
       <Row>
