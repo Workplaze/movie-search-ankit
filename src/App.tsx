@@ -13,7 +13,9 @@ const App = () => {
   return (
     <div
       className={
-        darkMode ? "bg-slate-100 text-black" : "bg-gray-800 text-white"
+        darkMode
+          ? "bg-slate-100 text-black min-h-screen"
+          : "bg-gray-800 text-white min-h-screen"
       }
     >
       <ApolloProvider client={Client}>
