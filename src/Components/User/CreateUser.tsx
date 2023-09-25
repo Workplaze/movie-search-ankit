@@ -69,17 +69,15 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
       </div>
 
       <li className="flex flex-col justify-between">
-        <div className="flex flex-col justify-between">
-          <label>First Name:</label>
-          <input
-            type="text"
-            name="first_name"
-            value={formData.first_name}
-            onChange={handleInputChange}
-            required
-            className="text-black m-2 p-2 border border-black"
-          />
-        </div>
+        <label>First Name:</label>
+        <input
+          type="text"
+          name="first_name"
+          value={formData.first_name}
+          onChange={handleInputChange}
+          required
+          className="text-black m-2 p-2 border border-black"
+        />
       </li>
       <li className="flex flex-col justify-between">
         <label>Last Name:</label>
@@ -105,6 +103,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
       </li>
       <li className="flex flex-col justify-between">
         <label>Gender :</label>
+
         <input
           type="text"
           name="gender"

@@ -141,7 +141,7 @@ const UserData = () => {
           {filteredUserArray.map((userData: any) => (
             <li
               key={userData.id}
-              className="bg-gray-100 p-4 my-4 rounded-lg shadow-lg justify-around sm:flex sm:flex-row"
+              className="bg-gray-100 p-2 my-2 rounded-lg shadow-lg justify-between sm:flex sm:flex-row"
             >
               <div className="sm:flex">
                 <div>
@@ -168,7 +168,7 @@ const UserData = () => {
                   </p>
                 </div>
               </div>
-              <div className="justify-ends items-end ">
+              <div className="justify-ends m-2 items-end ">
                 <button
                   className="bg-slate-800 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded-full mr-2"
                   onClick={() => openEditModal(userData)}
