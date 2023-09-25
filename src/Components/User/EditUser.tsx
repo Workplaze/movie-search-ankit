@@ -72,6 +72,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, Close }) => {
           name="first_name"
           value={formData.first_name}
           onChange={handleChange}
+          required
           className="text-black m-2 p-2 border border-black"
         />
       </li>
@@ -82,6 +83,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, Close }) => {
           name="last_name"
           value={formData.last_name}
           onChange={handleChange}
+          required
           className="text-black m-2 p-2 border border-black"
         />
       </li>
@@ -92,6 +94,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, Close }) => {
           name="email_id"
           value={formData.email_id}
           onChange={handleChange}
+          required
           className="text-black m-2 p-2 border border-black"
         />
       </li>
@@ -102,6 +105,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, Close }) => {
           name="gender"
           value={formData.gender}
           onChange={handleChange}
+          required
           className="text-black m-2 p-2 border border-black"
         />
       </li>
@@ -112,16 +116,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, Close }) => {
           name="mobile_number"
           value={formData.mobile_number}
           onChange={handleChange}
-          className="text-black m-2 p-2 border border-black"
-        />
-      </li>
-      <li className="flex flex-col justify-between p-2">
-        <label>Mobile Number :</label>
-        <input
-          type="text"
-          name="mobile_number"
-          value={formData.mobile_number}
-          onChange={handleChange}
+          required
           className="text-black m-2 p-2 border border-black"
         />
       </li>
@@ -132,6 +127,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, Close }) => {
           name="dob"
           value={formData.dob}
           onChange={handleChange}
+          required
           className="text-black m-2 p-2 border border-black"
         />
       </li>
@@ -140,6 +136,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, Close }) => {
         <input
           type="text"
           name="address"
+          required
           value={formData.address}
           onChange={handleChange}
           className="text-black  m-2 p-2 border border-black"

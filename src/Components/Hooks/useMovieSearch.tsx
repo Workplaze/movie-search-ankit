@@ -19,10 +19,9 @@ const useMovieSearch = (
       try {
         const url = `https://www.omdbapi.com/?s=${defaultQuery}&apikey=${apiKey}`;
         const response = await axios.get(url);
-        console.log(response, "response");
         setMovies(response.data.Search);
       } catch (error) {
-        console.error("Error fetching movies:", error);
+        alert(error);
       } finally {
         setLoading(false);
       }

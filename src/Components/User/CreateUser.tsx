@@ -69,16 +69,15 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
       </div>
 
       <li className="flex flex-col justify-between">
-        <div className="flex flex-col justify-between">
-          <label>First Name:</label>
-          <input
-            type="text"
-            name="first_name"
-            value={formData.first_name}
-            onChange={handleInputChange}
-            className="text-black m-2 p-2 border border-black"
-          />
-        </div>
+        <label>First Name:</label>
+        <input
+          type="text"
+          name="first_name"
+          value={formData.first_name}
+          onChange={handleInputChange}
+          required
+          className="text-black m-2 p-2 border border-black"
+        />
       </li>
       <li className="flex flex-col justify-between">
         <label>Last Name:</label>
@@ -87,6 +86,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
           name="last_name"
           value={formData.last_name}
           onChange={handleInputChange}
+          required
           className="text-black m-2 p-2 border border-black"
         />
       </li>
@@ -97,15 +97,18 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
           name="email_id"
           value={formData.email_id}
           onChange={handleInputChange}
+          required
           className="text-black m-2 p-2 border border-black"
         />
       </li>
       <li className="flex flex-col justify-between">
         <label>Gender :</label>
+
         <input
           type="text"
           name="gender"
           value={formData.gender}
+          required
           onChange={handleInputChange}
           className="text-black m-2 p-2 border border-black"
         />
@@ -118,6 +121,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
           name="mobile_number"
           value={formData.mobile_number}
           onChange={handleInputChange}
+          required
           maxLength={10}
           className="text-black m-2 p-2 border border-black"
         />
@@ -128,6 +132,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
           type="date"
           name="dob"
           value={formData.dob}
+          required
           onChange={handleInputChange}
           className="text-black m-2 p-2 border border-black"
         />
@@ -138,6 +143,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
           type="text"
           name="address"
           value={formData.address}
+          required
           onChange={handleInputChange}
           className="text-black m-2 p-2 border border-black"
         />
