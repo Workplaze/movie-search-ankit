@@ -76,6 +76,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
             name="first_name"
             value={formData.first_name}
             onChange={handleInputChange}
+            required
             className="text-black m-2 p-2 border border-black"
           />
         </div>
@@ -87,6 +88,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
           name="last_name"
           value={formData.last_name}
           onChange={handleInputChange}
+          required
           className="text-black m-2 p-2 border border-black"
         />
       </li>
@@ -97,6 +99,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
           name="email_id"
           value={formData.email_id}
           onChange={handleInputChange}
+          required
           className="text-black m-2 p-2 border border-black"
         />
       </li>
@@ -106,6 +109,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
           type="text"
           name="gender"
           value={formData.gender}
+          required
           onChange={handleInputChange}
           className="text-black m-2 p-2 border border-black"
         />
@@ -118,6 +122,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
           name="mobile_number"
           value={formData.mobile_number}
           onChange={handleInputChange}
+          required
           maxLength={10}
           className="text-black m-2 p-2 border border-black"
         />
@@ -128,6 +133,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
           type="date"
           name="dob"
           value={formData.dob}
+          required
           onChange={handleInputChange}
           className="text-black m-2 p-2 border border-black"
         />
@@ -138,6 +144,7 @@ const CreateUser: React.FC<CreateUserProps> = ({ close }) => {
           type="text"
           name="address"
           value={formData.address}
+          required
           onChange={handleInputChange}
           className="text-black m-2 p-2 border border-black"
         />
